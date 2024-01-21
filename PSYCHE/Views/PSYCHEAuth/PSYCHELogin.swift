@@ -102,11 +102,11 @@ struct PSYCHELogin: View {
                                         .font(.system(size: geometry.size.height * 0.012, weight: .regular, design: .default))
                                         .foregroundColor(.white)
                                 } else {
-                                    Text(verbatim: String(word.first!)) // First letter
+                                    Text(verbatim: String(word.first!))
                                         .font(.system(size: geometry.size.height * 0.012, weight: .heavy, design: .default))
                                 
                                         .foregroundColor(.white) +
-                                    Text(verbatim: String(word.dropFirst())) // Rest of the word
+                                    Text(verbatim: String(word.dropFirst()))
                                         .font(.system(size: geometry.size.height * 0.012, weight: .regular, design: .default))
                                         .foregroundColor(.white)
                                 }
@@ -273,14 +273,13 @@ struct PSYCHELogin: View {
             }
 
             guard let data = data, let response = response as? HTTPURLResponse else {
-                // Handle the error - No data or response
                 self.isLoginSuccessful = false
                 return
             }
 
             if response.statusCode == 200 {
                 self.isLoginSuccessful = true
-                self.currentView = .Reset
+                self.currentView = .Patients
             } else {
                 self.isLoginSuccessful = false
             }

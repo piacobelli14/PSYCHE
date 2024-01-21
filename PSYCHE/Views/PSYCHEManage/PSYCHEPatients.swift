@@ -8,13 +8,24 @@
 import SwiftUI
 
 struct PSYCHEPatients: View {
+    @Binding var currentView: AppView
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+        
+        ZStack {
+            LinearGradient(gradient: Gradient(colors: [Color(hex: 0x152234), Color(hex: 0x1D2951)]), startPoint: .top, endPoint: .bottom)
+               .frame(maxWidth: .infinity, maxHeight: .infinity)
+               .edgesIgnoringSafeArea(.all)
+            
+            GeometryReader { geometry in
+                VStack {
+                    
+                    
+                    
+                    
+                }
+            }
+        }
 
-struct PSYCHEPatients_Previews: PreviewProvider {
-    static var previews: some View {
-        PSYCHEPatients()
     }
 }

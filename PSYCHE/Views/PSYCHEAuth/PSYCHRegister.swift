@@ -65,7 +65,7 @@ struct PhotoPicker: UIViewControllerRepresentable {
                     DispatchQueue.main.async {
                         if let uiImage = image as? UIImage {
                             self.parent.image = uiImage
-                            self.parent.onSelect(uiImage)  // Pass the selected image
+                            self.parent.onSelect(uiImage)
                         }
                     }
                 }
@@ -92,9 +92,8 @@ struct ImagePickerView: View {
             }
         }
     }
-
     private func convertImageToBase64String(img: UIImage) -> String? {
-        guard let imageData = img.jpegData(compressionQuality: 1.0) else { return nil } // Reduced quality
+        guard let imageData = img.jpegData(compressionQuality: 1.0) else { return nil }
         return imageData.base64EncodedString(options: .lineLength64Characters)
     }
 }
@@ -427,7 +426,6 @@ struct PSYCHRegister: View {
                                 .frame(width: geometry.size.width * 0.8)
                                 .padding(.top, geometry.size.height * 0.04)
                                 
-                                
                                 HStack {
                                     Button(action: {
                                         self.validateAndRegisterUser()
@@ -523,16 +521,13 @@ struct PSYCHRegister: View {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try? JSONSerialization.data(withJSONObject: requestBody)
 
-        // Perform the request
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
-                // Handle the error - Error making the request
                 errorMessage = "Registration failed: \(error.localizedDescription)"
                 return
             }
 
-            guard let data = data, let response = response as? HTTPURLResponse else {
-                // Handle the error - No data or response
+            guard data == data, let response = response as? HTTPURLResponse else {
                 errorMessage = "Registration failed: No response received."
                 return
             }

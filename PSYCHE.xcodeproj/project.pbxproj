@@ -15,6 +15,7 @@
 		BE8671792B5C36EA00810613 /* PSYCHELogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8671782B5C36EA00810613 /* PSYCHELogin.swift */; };
 		BE86717F2B5C7C2E00810613 /* PSYCHEReset.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE86717E2B5C7C2E00810613 /* PSYCHEReset.swift */; };
 		BE8671812B5C926000810613 /* PSYCHRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8671802B5C926000810613 /* PSYCHRegister.swift */; };
+		BE8671842B5DD81800810613 /* PSYCHEPatients.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8671832B5DD81800810613 /* PSYCHEPatients.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		BE8671782B5C36EA00810613 /* PSYCHELogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSYCHELogin.swift; sourceTree = "<group>"; };
 		BE86717E2B5C7C2E00810613 /* PSYCHEReset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSYCHEReset.swift; sourceTree = "<group>"; };
 		BE8671802B5C926000810613 /* PSYCHRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSYCHRegister.swift; sourceTree = "<group>"; };
+		BE8671832B5DD81800810613 /* PSYCHEPatients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSYCHEPatients.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 		BE8671822B5DD75400810613 /* PSYCHEManage */ = {
 			isa = PBXGroup;
 			children = (
+				BE8671832B5DD81800810613 /* PSYCHEPatients.swift */,
 			);
 			path = PSYCHEManage;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 				BE8671792B5C36EA00810613 /* PSYCHELogin.swift in Sources */,
 				BE86717F2B5C7C2E00810613 /* PSYCHEReset.swift in Sources */,
 				BE8671742B5C367600810613 /* ViewControllerEnum.swift in Sources */,
+				BE8671842B5DD81800810613 /* PSYCHEPatients.swift in Sources */,
 				BE8671632B5C338300810613 /* PSYCHEApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

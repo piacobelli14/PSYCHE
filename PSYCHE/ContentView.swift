@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct ContentView: View {
-    @State private var currentView: AppView = .Login
+    @State private var currentView: AppView = .Patients
 
     var body: some View {
         switch currentView {
@@ -19,6 +19,8 @@ struct ContentView: View {
             PSYCHEReset(currentView: $currentView)
         case .Register:
             PSYCHRegister(currentView: $currentView)
+        case .Patients:
+            PSYCHEPatients(currentView: $currentView)
         }
     }
 }
