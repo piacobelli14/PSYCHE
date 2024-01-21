@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct PSYCHEApp: App {
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView() // Set the flag as needed
         }
     }
 }
+
+

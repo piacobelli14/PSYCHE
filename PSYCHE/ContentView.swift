@@ -7,15 +7,18 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    var body: some View {
-        Text("Hello, world!")
-            .padding()
-    }
-}
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+struct ContentView: View {
+    @State private var currentView: AppView = .Register
+
+    var body: some View {
+        switch currentView {
+        case .Login:
+            PSYCHELogin(currentView: $currentView)
+        case .Reset:
+            PSYCHEReset(currentView: $currentView)
+        case .Register:
+            PSYCHRegister(currentView: $currentView)
+        }
     }
 }

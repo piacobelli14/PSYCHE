@@ -11,6 +11,10 @@
 		BE8671652B5C338300810613 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8671642B5C338300810613 /* ContentView.swift */; };
 		BE8671672B5C338500810613 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE8671662B5C338500810613 /* Assets.xcassets */; };
 		BE86716A2B5C338500810613 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE8671692B5C338500810613 /* Preview Assets.xcassets */; };
+		BE8671742B5C367600810613 /* ViewControllerEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8671732B5C367600810613 /* ViewControllerEnum.swift */; };
+		BE8671792B5C36EA00810613 /* PSYCHELogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8671782B5C36EA00810613 /* PSYCHELogin.swift */; };
+		BE86717F2B5C7C2E00810613 /* PSYCHEReset.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE86717E2B5C7C2E00810613 /* PSYCHEReset.swift */; };
+		BE8671812B5C926000810613 /* PSYCHRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8671802B5C926000810613 /* PSYCHRegister.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +23,10 @@
 		BE8671642B5C338300810613 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BE8671662B5C338500810613 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE8671692B5C338500810613 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BE8671732B5C367600810613 /* ViewControllerEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerEnum.swift; sourceTree = "<group>"; };
+		BE8671782B5C36EA00810613 /* PSYCHELogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSYCHELogin.swift; sourceTree = "<group>"; };
+		BE86717E2B5C7C2E00810613 /* PSYCHEReset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSYCHEReset.swift; sourceTree = "<group>"; };
+		BE8671802B5C926000810613 /* PSYCHRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSYCHRegister.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +59,9 @@
 		BE8671612B5C338300810613 /* PSYCHE */ = {
 			isa = PBXGroup;
 			children = (
+				BE8671722B5C362500810613 /* Protocols */,
+				BE8671712B5C361A00810613 /* Views */,
+				BE8671702B5C35F300810613 /* Managers */,
 				BE8671622B5C338300810613 /* PSYCHEApp.swift */,
 				BE8671642B5C338300810613 /* ContentView.swift */,
 				BE8671662B5C338500810613 /* Assets.xcassets */,
@@ -65,6 +76,39 @@
 				BE8671692B5C338500810613 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BE8671702B5C35F300810613 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				BE8671732B5C367600810613 /* ViewControllerEnum.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		BE8671712B5C361A00810613 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BE8671772B5C36CD00810613 /* PSYCHEAuth */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BE8671722B5C362500810613 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		BE8671772B5C36CD00810613 /* PSYCHEAuth */ = {
+			isa = PBXGroup;
+			children = (
+				BE8671802B5C926000810613 /* PSYCHRegister.swift */,
+				BE8671782B5C36EA00810613 /* PSYCHELogin.swift */,
+				BE86717E2B5C7C2E00810613 /* PSYCHEReset.swift */,
+			);
+			path = PSYCHEAuth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +182,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE8671652B5C338300810613 /* ContentView.swift in Sources */,
+				BE8671812B5C926000810613 /* PSYCHRegister.swift in Sources */,
+				BE8671792B5C36EA00810613 /* PSYCHELogin.swift in Sources */,
+				BE86717F2B5C7C2E00810613 /* PSYCHEReset.swift in Sources */,
+				BE8671742B5C367600810613 /* ViewControllerEnum.swift in Sources */,
 				BE8671632B5C338300810613 /* PSYCHEApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,6 +312,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PSYCHE/Preview Content\"";
@@ -273,8 +322,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortraitUpsideDown;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -282,6 +332,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.PSYCHE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -293,6 +344,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PSYCHE/Preview Content\"";
@@ -302,8 +354,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortraitUpsideDown;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -311,6 +364,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.PSYCHE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
