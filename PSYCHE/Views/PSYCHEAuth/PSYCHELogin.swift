@@ -253,49 +253,36 @@ struct PSYCHELogin: View {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
     }
-    func authenticateUser() {
-        guard let url = URL(string: "http://172.20.10.3:3000/login") else {
-            return
-        }
-
+    private func authenticateUser() {
+        
         let requestBody: [String: Any] = [
             "username": username,
             "password": password
         ]
-        
-        guard let jsonData = try? JSONSerialization.data(withJSONObject: requestBody) else {
-            print("Failed to serialize request body")
-            return
-        }
 
+        let url = URL(string: "http://172.20.10.3:8001/login")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = jsonData
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONSerialization.data(withJSONObject: requestBody)
 
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
-                print("Error: \(error)")
-            } else if let data = data {
-                do {
-                    let jsonResponse = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                self.isLoginSuccessful = false
+                return
+            }
 
-                    if let message = jsonResponse?["message"] as? String {
-                        print(message)
-                        if message == "success" {
-                            DispatchQueue.main.async {
-                                self.isLoginSuccessful = true
-                                //self.currentView = .DinoTraceMain
-                            }
-                        } else {
-                            DispatchQueue.main.async {
-                                self.isLoginSuccessful = false
-                            }
-                        }
-                    }
-                } catch {
-                    print("Error parsing JSON response: \(error)")
-                }
+            guard let data = data, let response = response as? HTTPURLResponse else {
+                // Handle the error - No data or response
+                self.isLoginSuccessful = false
+                return
+            }
+
+            if response.statusCode == 200 {
+                self.isLoginSuccessful = true
+                self.currentView = .Reset
+            } else {
+                self.isLoginSuccessful = false
             }
         }.resume()
     }

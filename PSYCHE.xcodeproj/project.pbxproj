@@ -89,6 +89,7 @@
 		BE8671712B5C361A00810613 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BE8671822B5DD75400810613 /* PSYCHEManage */,
 				BE8671772B5C36CD00810613 /* PSYCHEAuth */,
 			);
 			path = Views;
@@ -109,6 +110,13 @@
 				BE86717E2B5C7C2E00810613 /* PSYCHEReset.swift */,
 			);
 			path = PSYCHEAuth;
+			sourceTree = "<group>";
+		};
+		BE8671822B5DD75400810613 /* PSYCHEManage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PSYCHEManage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

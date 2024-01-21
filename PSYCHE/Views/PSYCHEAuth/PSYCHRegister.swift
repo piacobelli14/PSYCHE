@@ -29,7 +29,6 @@ struct createPasswordDynamicStyle: ViewModifier {
     }
 }
 
-
 struct PhotoPicker: UIViewControllerRepresentable {
     @Binding var image: UIImage?
     var onSelect: (UIImage) -> Void
@@ -83,16 +82,23 @@ struct ImagePickerView: View {
     var body: some View {
         if showImagePicker {
             PhotoPicker(image: $selectedImage) { uiImage in
-                // Convert the selected image to base64 string
-                if let imageData = uiImage.jpegData(compressionQuality: 1.0) {
-                    let base64String = imageData.base64EncodedString()
-                    self.imageBase64 = base64String
+                self.selectedImage = uiImage
+                if let base64String = convertImageToBase64String(img: uiImage) {
+                    DispatchQueue.main.async {
+                        self.imageBase64 = base64String
+                    }
                 }
-                showImagePicker = false
+                self.showImagePicker = false
             }
         }
     }
+
+    private func convertImageToBase64String(img: UIImage) -> String? {
+        guard let imageData = img.jpegData(compressionQuality: 1.0) else { return nil } // Reduced quality
+        return imageData.base64EncodedString(options: .lineLength64Characters)
+    }
 }
+
 
 struct PSYCHRegister: View {
     @Binding var currentView: AppView
@@ -108,6 +114,8 @@ struct PSYCHRegister: View {
     @State private var confirmPassword: String = ""
     @State private var isNewPasswordVisible = false
     @State private var isConfirmPasswordVisible = false
+    @State private var errorMessage: String? = nil
+
 
     var body: some View {
         ZStack {
@@ -422,7 +430,7 @@ struct PSYCHRegister: View {
                                 
                                 HStack {
                                     Button(action: {
-                                        //authenticateUser()
+                                        self.validateAndRegisterUser()
                                     }) {
                                         HStack {
                                             Text("Create New Account")
@@ -437,12 +445,18 @@ struct PSYCHRegister: View {
                                     }
                                 }
                                 .padding(.top, geometry.size.height * 0.1)
+                                
+                                if let errorMessage = errorMessage {
+                                    Text(errorMessage)
+                                        .foregroundColor(.red)
+                                        .font(.system(size: geometry.size.height * 0.012))
+                                        .padding(.top, geometry.size.height * 0.02)
+                                }
                             }
                             
                             ImagePickerView(showImagePicker: $showImagePicker, selectedImage: $selectedImage, imageBase64: $imageBase64)
-                                .padding(.top, geometry.size.height * 0.05)
+                                                            .padding(.top, geometry.size.height * 0.05)
                         }
-                        
                     }
                 }
             }
@@ -451,13 +465,84 @@ struct PSYCHRegister: View {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
     }
-    func handleImageSelection() {
-        if let selectedImage = self.selectedImage,
-           let imageData = selectedImage.jpegData(compressionQuality: 1.0) {
-            let base64String = imageData.base64EncodedString()
-            // Use base64String for your needs
-            self.imageBase64 = base64String
+    private func validateAndRegisterUser() {
+        guard !firstName.isEmpty, !lastName.isEmpty, !email.isEmpty, !username.isEmpty, !newPassword.isEmpty, !confirmPassword.isEmpty else {
+            errorMessage = "All fields are required."
+            return
         }
-    }
 
+        guard newPassword == confirmPassword else {
+            errorMessage = "Passwords do not match."
+            return
+        }
+
+        guard isValidPassword(newPassword) else {
+            errorMessage = "Password must contain at least 8 characters, including uppercase, lowercase, digits, and special characters."
+            return
+        }
+        registerUser()
+    }
+    private func isValidPassword(_ password: String) -> Bool {
+        let passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&#])[A-Za-z\\d$@$!%*?&#]{8,}"
+        let passwordTest = NSPredicate(format: "SELF MATCHES %@", passwordRegex)
+        return passwordTest.evaluate(with: password)
+    }
+    private func registerUser() {
+        guard !firstName.isEmpty, !lastName.isEmpty, !email.isEmpty, !username.isEmpty, !newPassword.isEmpty, !confirmPassword.isEmpty else {
+            errorMessage = "All fields are required."
+            return
+        }
+
+        guard newPassword == confirmPassword else {
+            errorMessage = "Passwords do not match."
+            return
+        }
+
+        guard isValidPassword(newPassword) else {
+            errorMessage = "Password must contain at least 8 characters, including uppercase, lowercase, digits, and special characters."
+            return
+        }
+        
+        guard !imageBase64.isEmpty else {
+                errorMessage = "Please select an image."
+                return
+        }
+
+        let requestBody: [String: Any] = [
+            "firstName": firstName,
+            "lastName": lastName,
+            "email": email,
+            "username": username,
+            "password": newPassword,
+            "image": imageBase64,
+        ]
+
+        let url = URL(string: "http://172.20.10.3:8001/register-user")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONSerialization.data(withJSONObject: requestBody)
+
+        // Perform the request
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                // Handle the error - Error making the request
+                errorMessage = "Registration failed: \(error.localizedDescription)"
+                return
+            }
+
+            guard let data = data, let response = response as? HTTPURLResponse else {
+                // Handle the error - No data or response
+                errorMessage = "Registration failed: No response received."
+                return
+            }
+
+            if response.statusCode == 200 {
+                self.currentView = .Login
+            } else {
+                errorMessage = "This username or email is already taken. Please choose a different username or email."
+            }
+        }.resume()
+    }
 }
+
