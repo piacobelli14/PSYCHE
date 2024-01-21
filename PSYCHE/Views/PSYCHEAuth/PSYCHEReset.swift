@@ -398,14 +398,11 @@ struct PSYCHEReset: View {
                 DispatchQueue.main.async {
                     if let error = error {
                         self.resetResultMessage = "Error: \(error.localizedDescription)"
-                        print("Error: \(error.localizedDescription)")
                     } else if let data = data {
                         do {
                             if let jsonResponse = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                                print("JSON Response: \(jsonResponse)")
                                 if let message = jsonResponse["message"] as? String {
                                     self.resetResultMessage = message
-                                    print("Message: \(message)")
                                     
                                     if message == "Password reset code sent." {
                                         self.resetCode = jsonResponse["resetCode"] as? String ?? "N/A"
@@ -413,8 +410,6 @@ struct PSYCHEReset: View {
                                         self.currentPassword = jsonResponse["currentPassword"] as? String ?? "N/A"
                                         self.isReset = false
                                         self.isResetValid = false
-                                        print("Reset Code: \(self.resetCode)")
-                                        print("Reset Expiration: \(self.resetExpiration)")
                                     } else {
                                         self.resetCode = ""
                                         self.resetExpiration = ""
@@ -422,19 +417,16 @@ struct PSYCHEReset: View {
                                     }
                                 }
                             } else {
-                                self.resetResultMessage = "Invalid API response"
-                                print("Invalid API response")
+                                self.resetResultMessage = "Invalid API response."
                             }
                         } catch {
-                            self.resetResultMessage = "Failed to parse JSON response"
-                            print("JSON Parsing Error: \(error.localizedDescription)")
+                            self.resetResultMessage = "Failed to parse JSON response."
                         }
                     }
                 }
             }.resume()
         } catch {
-            resetResultMessage = "Failed to serialize request body"
-            print("Request Serialization Error: \(error.localizedDescription)")
+            resetResultMessage = "Failed to serialize request body."
         }
     }
     private func validateNewPassword() {
@@ -473,7 +465,7 @@ struct PSYCHEReset: View {
 
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
-                errorMessage = "Password reset failed: \(error.localizedDescription)"
+                errorMessage = "Password reset failed: \(error.localizedDescription)."
                 return
             }
 
