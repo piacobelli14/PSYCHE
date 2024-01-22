@@ -72,7 +72,7 @@ struct PSYCHEReset: View {
             AnimatedStarsView()
                 .ignoresSafeArea()
                 .background(
-                    LinearGradient(gradient: Gradient(colors: [Color(hex: 0x152234), Color(hex: 0x1D2951)]), startPoint: .top, endPoint: .bottom)
+                    LinearGradient(gradient: Gradient(colors: [Color(hex: 0x1D2951), Color(hex: 0x093571)]), startPoint: .top, endPoint: .bottom)
                 )
             
             VStack {
@@ -99,6 +99,7 @@ struct PSYCHEReset: View {
                     VStack {
                         Spacer()
                         if isReset {
+                            
                             HStack {
                                 Spacer()
                                 Text("Enter Your Email Address")
