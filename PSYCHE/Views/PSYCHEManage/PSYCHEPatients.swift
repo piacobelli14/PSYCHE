@@ -9,6 +9,8 @@ import SwiftUI
 
 struct PSYCHEPatients: View {
     @Binding var currentView: AppView
+    @State private var isChecked = false
+    @State private var patientList = false
     
     var body: some View {
         
@@ -17,34 +19,79 @@ struct PSYCHEPatients: View {
                .frame(maxWidth: .infinity, maxHeight: .infinity)
                .edgesIgnoringSafeArea(.all)
             
-            GeometryReader { geometry in
-                HStack {
-                    Button(action: {
-                        currentView = .Login
-                    }) {
-                        Image(systemName: "arrow.left")
-                            .foregroundColor(.black)
-                            .font(.system(size: geometry.size.height * 0.015))
-                    }
-                    .background(
-                        Circle()
+            VStack {
+                GeometryReader { geometry in
+                    VStack(alignment: .center) {
+                        Spacer()
+                        
+                        
+                        Rectangle()
                             .fill(Color.white)
-                            .frame(width: geometry.size.width * 0.04, height: geometry.size.height * 0.04)
-                            .shadow(color: Color(hex: 0x4E7FD5), radius: 5, x: 0, y: 0)
-                    )
-                    .padding(.top, geometry.size.height * 0.03)
-                    .padding(.leading, geometry.size.height * 0.035)
-                    Spacer()
-                }
-                
-                VStack {
-                    
-                    
-                    
-                    
+                            .frame(width: geometry.size.width * 0.7)
+                            .frame(height: geometry.size.height * 0.001)
+                        
+                        HStack(spacing: geometry.size.width * 0.08) {
+                            Spacer()
+                            Image(systemName: isChecked ? "checkmark.square.fill" : "square")
+                                .foregroundColor(isChecked ? Color(hex: 0x4E7FD5) : .white)
+                                .font(.system(size: geometry.size.height * 0.02))
+                                .onTapGesture {
+                                    isChecked.toggle()
+                                }
+                            
+                            Text("Name")
+                                .font(.system(size: geometry.size.height * 0.012, weight: .semibold))
+                            
+                            Text("ID #")
+                                .font(.system(size: geometry.size.height * 0.012, weight: .semibold))
+                            
+                            Text("Age")
+                                .font(.system(size: geometry.size.height * 0.012, weight: .semibold))
+                            
+                            Text("Sex")
+                                .font(.system(size: geometry.size.height * 0.012, weight: .semibold))
+                            
+                            Text("Unit")
+                                .font(.system(size: geometry.size.height * 0.012, weight: .semibold))
+                            
+                            Spacer()
+                        }
+                                    
+                             
+                        Spacer()
+                    }
+                        
                 }
             }
         }
+        .onTapGesture {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
+        .onAppear {
+            fetchPatientInfo()
+        }
+    }
+    private func fetchPatientInfo() {
+        
+        let url = URL(string: "http://172.20.10.3:8001/get-patients")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+               return
+            }
+
+            guard let data = data, let response = response as? HTTPURLResponse else {
+                return
+            }
+            
+            if response.statusCode == 200 {
+                currentView = .Login
+            }
+        }
+        .resume()
     }
 }
+

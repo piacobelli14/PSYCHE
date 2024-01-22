@@ -333,9 +333,7 @@ struct PSYCHEReset: View {
                                 
                                 HStack {
                                     Button(action: {
-                                       
                                         validateNewPassword()
-                                        
                                     }) {
                                         if passwordsMatch && passwordMeetsCriteria {
                                             HStack {
