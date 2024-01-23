@@ -34,9 +34,14 @@ struct PSYCHEPatients: View {
 
     var body: some View {
         ZStack {
-            LinearGradient(gradient: Gradient(colors: [Color(hex: 0x1D2951), Color(hex: 0x1D2951)]), startPoint: .top, endPoint: .bottom)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .edgesIgnoringSafeArea(.all)
+            
+            AnimatedStarsView()
+                .ignoresSafeArea()
+                .background(
+                    LinearGradient(gradient: Gradient(colors: [Color(hex: 0x1D2951), Color(hex: 0x1D2951)]), startPoint: .top, endPoint: .bottom)
+                )
+
+           
 
             VStack {
                 GeometryReader { geometry in
@@ -156,7 +161,7 @@ struct PSYCHEPatients: View {
                                         .shadow(color: .gray, radius: geometry.size.width * 0.004)
                                 )
                                 .padding(.vertical, geometry.size.height * 0.01)
-                                .background(Color.clear)
+                                .background(Color(hex: 0x1D2951))
                                 .listRowBackground(Color.clear)
                             }
                             .listStyle(PlainListStyle())
@@ -300,7 +305,7 @@ struct PSYCHEPatients: View {
             "patientTable": (isCurrent ? "current" : "archive"),
         ]
 
-        let url = URL(string: "http://172.20.10.3:8001/get-patients")!
+        let url = URL(string: "http://10.111.26.70:8001/get-patients")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

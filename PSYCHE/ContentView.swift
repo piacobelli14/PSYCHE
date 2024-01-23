@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct ContentView: View {
-    @State private var currentView: AppView = .Patients
+    @State private var currentView: AppView = .Swap
     @State private var selectedPatientID: String = ""
 
     var body: some View {
@@ -28,6 +28,8 @@ struct ContentView: View {
             PSYCHEEdit(currentView: $currentView, selectedPatientID: $selectedPatientID)
         case .Archive:
             PSYCHEArchive(currentView: $currentView, selectedPatientID: $selectedPatientID)
+        case .Swap:
+            PSYCHESwap(currentView: $currentView, selectedPatientID: $selectedPatientID)
         }
     }
 }
