@@ -20,6 +20,7 @@ struct PSYCHEArchive: View {
     @State private var ptFirstNameArchive: String = ""
     @State private var ptLastNameArchive: String = ""
     @State private var ptIDArchive: String = ""
+    @State private var validationCheck = false
     
     @State private var errorMessage: String? = nil
 
@@ -76,19 +77,45 @@ struct PSYCHEArchive: View {
                                 .foregroundColor(Color.white)
                                 
                                 VStack {
-                                    
                                     HStack {
                                         Spacer()
                                         
-                                        Text("Are you sure that you want to archive patient \(ptFirstNameArchive) \(ptLastNameArchive) (ID: \(ptIDArchive)?")
+                                        Text("Are you sure that you want to archive patient \(ptFirstNameArchive) \(ptLastNameArchive) (ID: \(ptIDArchive))?")
+                                            .font(.system(size: geometry.size.height * 0.02, weight: .semibold))
+                                            .foregroundColor(Color.white)
+                                            .multilineTextAlignment(.center)
                                         
                                         Spacer()
                                     }
+                                    .frame(width: geometry.size.width * 0.8)
+                                    .padding(.top, geometry.size.height * 0.2)
                                     
+                                    HStack {
+                                        Image(systemName: validationCheck ? "checkmark.square.fill" : "square")
+                                            .frame(width: geometry.size.width * 0.025)
+                                            .foregroundColor(.white) // Set the checkmark color to white
+                                            .font(.system(size: geometry.size.height * 0.025))
+                                            .onTapGesture {
+                                                validationCheck.toggle()
+                                            }
+                                        
+                                        Text("I understand that all of this patient's information will be moved to the archive. It will be accessable, but can no longer be edited. This change can not be undone.")
+                                            .font(.system(size: geometry.size.height * 0.01, weight: .semibold))
+                                            .foregroundColor(Color.white)
+                                            .opacity(0.9)
+                                            .padding(.leading, geometry.size.width * 0.02)
+                                            .multilineTextAlignment(.leading)
+                                    }
+                                    .padding(.top, geometry.size.height * 0.025)
+                                    .frame(width: geometry.size.width * 0.6)
                                     
                                     HStack {
                                         Button(action: {
-                                            archivePatient()
+                                            if (validationCheck) {
+                                                archivePatient()
+                                            } else {
+                                                errorMessage = "Please check the box above to confirm the archive."
+                                            }
                                         }) {
                                             HStack {
                                                 Text("Confirm Patient Archive")
@@ -102,7 +129,7 @@ struct PSYCHEArchive: View {
                                             .shadow(color: .gray, radius: geometry.size.width * 0.004)
                                         }
                                     }
-                                    .padding(.top, geometry.size.height * 0.12)
+                                    .padding(.top, geometry.size.height * 0.2)
                                     
                                     HStack {
                                         Button(action: {
