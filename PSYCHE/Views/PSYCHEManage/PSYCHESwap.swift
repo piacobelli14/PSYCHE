@@ -105,13 +105,47 @@ struct PSYCHESwap: View {
                                                     .padding(.top, geometry.size.height * 0.002)
                                             }
                                         }
+                                        
                                         WatchView()
                                         
-                                        
-                                        
-                                        
+                                        VStack {
+                                            HStack {
+                                                Spacer()
+                                                Text("In Use: ")
+                                                    .font(.system(size: geometry.size.height * 0.015, weight: .heavy))
+                                                Text("Peter I.")
+                                                    .font(.system(size: geometry.size.height * 0.015, weight: .regular))
+                                                Spacer()
+                                            }
+                                            .frame(width: geometry.size.width * 0.3)
+                                            .padding(.vertical, geometry.size.height * 0.01)
+                                            .background(Color(hex: 0x5BBA6F).opacity(0.2))
+                                            .foregroundColor(Color(hex: 0x6BC17D).opacity(1))
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
+                                                    .stroke(Color(hex: 0x6BC17D), lineWidth: geometry.size.width * 0.004)
+                                            )
+                                            
+                                            HStack {
+                                                Spacer()
+                                                Text("Not Charged: ")
+                                                    .font(.system(size: geometry.size.height * 0.015, weight: .heavy))
+                                                Text("21%")
+                                                    .font(.system(size: geometry.size.height * 0.015, weight: .regular))
+                                                Spacer()
+                                            }
+                                            .frame(width: geometry.size.width * 0.3)
+                                            .padding(.vertical, geometry.size.height * 0.01)
+                                            .background(Color(hex: 0xE54B4B).opacity(0.2))
+                                            .foregroundColor(Color(hex: 0xE54B4B).opacity(1))
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
+                                                    .stroke(Color(hex: 0xE54B4B), lineWidth: geometry.size.width * 0.004)
+                                            )
+                                            .padding(.top, geometry.size.height * 0.005)
+                                        }
                                     }
-                                    .frame(width: geometry.size.width * 0.4, height: geometry.size.height * 0.3)
+                                    .frame(width: geometry.size.width * 0.45, height: geometry.size.height * 0.4)
                                     .padding(geometry.size.height * 0.014)
                                     .background(Color(hex: 0xF6FCFE))
                                     .border(Color(hex: 0xDFE6E9), width: geometry.size.width * 0.003)
