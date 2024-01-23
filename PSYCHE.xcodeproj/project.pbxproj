@@ -16,6 +16,10 @@
 		BE86717F2B5C7C2E00810613 /* PSYCHEReset.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE86717E2B5C7C2E00810613 /* PSYCHEReset.swift */; };
 		BE8671812B5C926000810613 /* PSYCHRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8671802B5C926000810613 /* PSYCHRegister.swift */; };
 		BE8671842B5DD81800810613 /* PSYCHEPatients.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8671832B5DD81800810613 /* PSYCHEPatients.swift */; };
+		BE8671862B5EFA8600810613 /* PSYCHEEnroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8671852B5EFA8600810613 /* PSYCHEEnroll.swift */; };
+		BE8671882B5EFA9B00810613 /* PSYCHEArchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8671872B5EFA9B00810613 /* PSYCHEArchive.swift */; };
+		BE86718A2B5EFAB100810613 /* PSYCHEEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8671892B5EFAB100810613 /* PSYCHEEdit.swift */; };
+		BE86718C2B5EFAC200810613 /* PSYCHESwap.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE86718B2B5EFAC200810613 /* PSYCHESwap.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +33,10 @@
 		BE86717E2B5C7C2E00810613 /* PSYCHEReset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSYCHEReset.swift; sourceTree = "<group>"; };
 		BE8671802B5C926000810613 /* PSYCHRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSYCHRegister.swift; sourceTree = "<group>"; };
 		BE8671832B5DD81800810613 /* PSYCHEPatients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSYCHEPatients.swift; sourceTree = "<group>"; };
+		BE8671852B5EFA8600810613 /* PSYCHEEnroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSYCHEEnroll.swift; sourceTree = "<group>"; };
+		BE8671872B5EFA9B00810613 /* PSYCHEArchive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSYCHEArchive.swift; sourceTree = "<group>"; };
+		BE8671892B5EFAB100810613 /* PSYCHEEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSYCHEEdit.swift; sourceTree = "<group>"; };
+		BE86718B2B5EFAC200810613 /* PSYCHESwap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSYCHESwap.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +126,10 @@
 			isa = PBXGroup;
 			children = (
 				BE8671832B5DD81800810613 /* PSYCHEPatients.swift */,
+				BE86718B2B5EFAC200810613 /* PSYCHESwap.swift */,
+				BE8671892B5EFAB100810613 /* PSYCHEEdit.swift */,
+				BE8671852B5EFA8600810613 /* PSYCHEEnroll.swift */,
+				BE8671872B5EFA9B00810613 /* PSYCHEArchive.swift */,
 			);
 			path = PSYCHEManage;
 			sourceTree = "<group>";
@@ -192,11 +204,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE8671882B5EFA9B00810613 /* PSYCHEArchive.swift in Sources */,
 				BE8671652B5C338300810613 /* ContentView.swift in Sources */,
 				BE8671812B5C926000810613 /* PSYCHRegister.swift in Sources */,
 				BE8671792B5C36EA00810613 /* PSYCHELogin.swift in Sources */,
 				BE86717F2B5C7C2E00810613 /* PSYCHEReset.swift in Sources */,
+				BE86718A2B5EFAB100810613 /* PSYCHEEdit.swift in Sources */,
 				BE8671742B5C367600810613 /* ViewControllerEnum.swift in Sources */,
+				BE8671862B5EFA8600810613 /* PSYCHEEnroll.swift in Sources */,
+				BE86718C2B5EFAC200810613 /* PSYCHESwap.swift in Sources */,
 				BE8671842B5DD81800810613 /* PSYCHEPatients.swift in Sources */,
 				BE8671632B5C338300810613 /* PSYCHEApp.swift in Sources */,
 			);

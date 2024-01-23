@@ -17,8 +17,8 @@ struct PatientInfo: Codable {
 
 struct PSYCHEPatients: View {
     @Binding var currentView: AppView
+    @Binding var selectedPatientID: String
     @State private var patients: [PatientInfo] = []
-    @State private var selectedPatientID: String = ""
     @State private var patientSearch: String = ""
     @State private var isCurrent = true
     
@@ -215,7 +215,7 @@ struct PSYCHEPatients: View {
                                     
                                     Button(
                                         action: {
-                                            //
+                                            self.currentView = .Enroll
                                         },
                                         label: {
                                             Image(systemName: "person.badge.plus")
@@ -226,12 +226,10 @@ struct PSYCHEPatients: View {
                                                 .shadow(color: .gray, radius: geometry.size.width * 0.01)
                                         }
                                     )
-                                    .disabled(selectedPatientID == "" ? true : false)
-                                    .opacity(selectedPatientID == "" ? 0.6 : 1)
                                     
                                     Button(
                                         action: {
-                                            //
+                                            self.currentView = .Archive
                                         },
                                         label: {
                                             Image(systemName: "person.badge.minus")
@@ -247,7 +245,7 @@ struct PSYCHEPatients: View {
                                     
                                     Button(
                                         action: {
-                                            //
+                                            self.currentView = .Edit
                                         },
                                         label: {
                                             Image(systemName: "square.and.pencil")
@@ -302,7 +300,7 @@ struct PSYCHEPatients: View {
             "patientTable": (isCurrent ? "current" : "archive"),
         ]
 
-        let url = URL(string: "http://10.111.26.70:8001/get-patients")!
+        let url = URL(string: "http://172.20.10.3:8001/get-patients")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
