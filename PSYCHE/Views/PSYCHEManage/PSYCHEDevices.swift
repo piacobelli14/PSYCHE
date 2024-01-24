@@ -17,9 +17,12 @@ struct WatchData: Codable {
 }
 
 struct WatchView: UIViewRepresentable {
+    let devType: String
+
     func makeUIView(context: Context) -> SCNView {
         let sceneView = SCNView()
-        sceneView.scene = SCNScene(named: "apple watch series 6")
+        
+        sceneView.scene = SCNScene(named: devType)
         sceneView.backgroundColor = UIColor.clear
         sceneView.autoenablesDefaultLighting = true
         sceneView.allowsCameraControl = true
@@ -107,7 +110,7 @@ struct PSYCHEDevices: View {
                             Spacer()
                             
                             Button(action: {
-                                currentView = .Patients
+                                currentView = .Manage
                             }) {
                                 Image(systemName: "gear")
                                     .foregroundColor(.black)
@@ -125,8 +128,6 @@ struct PSYCHEDevices: View {
                         .padding(.leading, geometry.size.height * 0.035)
                         .frame(width: geometry.size.width * 0.2)
                         
-                        
-                            
                         Spacer()
                         
                         HStack {
@@ -149,7 +150,7 @@ struct PSYCHEDevices: View {
                             Spacer()
                             
                             Button(action: {
-                                currentView = .Patients
+                                currentView = .RemoveDev
                             }) {
                                 Image(systemName: "minus")
                                     .foregroundColor(.black)
@@ -199,7 +200,6 @@ struct PSYCHEDevices: View {
         }
     }
     private func deviceCell(for device: WatchData, geometry: GeometryProxy) -> some View {
-       
             VStack {
                 HStack {
                     VStack(alignment: .trailing) {
@@ -227,7 +227,8 @@ struct PSYCHEDevices: View {
                     }
                 }
                 
-                WatchView()
+                WatchView(devType: device.devType)
+
                 
                 VStack {
                     HStack {
@@ -282,7 +283,7 @@ struct PSYCHEDevices: View {
         }
     
     private func getDeviceInfo() {
-        let url = URL(string: "http://10.111.26.70:8001/get-devices")!
+        let url = URL(string: "http://172.20.10.3:8001/get-devices")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

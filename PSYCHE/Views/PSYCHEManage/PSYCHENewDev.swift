@@ -6,12 +6,278 @@
 //
 
 import SwiftUI
+import UIKit
+import SceneKit
 
 struct PSYCHENewDev: View {
     @Binding var currentView: AppView
     
+    @State private var devType: String = ""
+    @State private var devID: String = ""
+    
+    let types = ["", "Fitbit Sense"]
+    
+    @State private var errorMessage = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            LinearGradient(gradient: Gradient(colors: [Color(hex: 0x1D2951), Color(hex: 0x1D2951)]), startPoint: .top, endPoint: .bottom)
+                .ignoresSafeArea()
+            
+            VStack {
+                GeometryReader { geometry in
+                    HStack {
+                        HStack {
+                            Button(action: {
+                                currentView = .Devices
+                            }) {
+                                Image(systemName: "arrow.left")
+                                    .foregroundColor(.black)
+                                    .font(.system(size: geometry.size.height * 0.015))
+                            }
+                            .background(
+                                Circle()
+                                    .fill(Color.white)
+                                    .frame(width: geometry.size.width * 0.04, height: geometry.size.height * 0.04)
+                                    .shadow(color: Color(hex: 0x4E7FD5), radius: 5, x: 0, y: 0)
+                                    .opacity(0.9)
+                            )
+                            .padding(.top, geometry.size.height * 0.03)
+                            .padding(.leading, geometry.size.height * 0.035)
+                        }
+                    }
+                    
+                    VStack(alignment: .center) {
+                        Spacer()
+                        HStack {
+                            Spacer()
+                            VStack {
+                                Spacer()
+                                
+                                VStack(alignment: .center) {
+                                    HStack {
+                                        Spacer()
+                                        Text("New Device Type")
+                                            .font(.system(size: geometry.size.height * 0.016, weight: .semibold, design: .default))
+                                            .foregroundColor(.white)
+                                            .shadow(color: .gray, radius: geometry.size.width * 0.0004)
+                                        Spacer()
+                                    }
+                                    
+                                    HStack {
+                                        Spacer()
+                                        Picker("Select New Device Type", selection: $devType) {
+                                            ForEach(types, id: \.self) { type in
+                                                Text(type).tag(type)
+                                            }
+                                        }
+                                        .pickerStyle(MenuPickerStyle())
+                                        .padding(geometry.size.height * 0.014)
+                                        .frame(width: geometry.size.width * 0.3)
+                                        .font(.system(size: geometry.size.height * 0.014, weight: .light))
+                                        .background(Color(hex: 0xF6FCFE))
+                                        .border(Color(hex: 0xDFE6E9), width: geometry.size.width * 0.003)
+                                        .cornerRadius(geometry.size.width * 0.01)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
+                                                .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
+                                        )
+                                        .shadow(color: .gray, radius: geometry.size.width * 0.004)
+                                        .accentColor(.black)
+                                        Spacer()
+                                    }
+                                }
+                                
+                                VStack(alignment: .center) {
+                                    HStack {
+                                        Spacer()
+                                        Text("New Device ID")
+                                            .font(.system(size: geometry.size.height * 0.016, weight: .semibold, design: .default))
+                                            .foregroundColor(.white)
+                                            .shadow(color: .gray, radius: geometry.size.width * 0.0004)
+                                        Spacer()
+                                    }
+                                    
+                                    HStack {
+                                        Spacer()
+                                        TextField("New Device ID", text: $devID)
+                                            .disableAutocorrection(true)
+                                            .foregroundColor(.black)
+                                            .font(.system(size: geometry.size.height * 0.014, weight: .light, design: .default))
+                                            .multilineTextAlignment(.center)
+                                            .padding(geometry.size.height * 0.014)
+                                            .background(Color(hex: 0xF6FCFE))
+                                            .border(Color(hex: 0xDFE6E9), width: geometry.size.width * 0.003)
+                                            .cornerRadius(geometry.size.width * 0.01)
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
+                                                    .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
+                                            )
+                                            .shadow(color: .gray, radius: geometry.size.width * 0.004)
+                                        Spacer()
+                                    }
+                                    
+                                    Text("This is a unique value used to identify the device and control its distribution. Please make sure that it is enetered correctly. It can't be edited.")
+                                        .font(.system(size: geometry.size.height * 0.01, weight: .regular))
+                                        .foregroundColor(Color.white)
+                                        .multilineTextAlignment(.center)
+                                        .frame(width: geometry.size.width * 0.6)
+                                    
+                                }
+                                .frame(width: geometry.size.width * 0.6)
+                                .padding(.top, geometry.size.height * 0.04)
+                                
+                                
+                                VStack {
+                                    
+                                    HStack {
+                                        VStack(alignment: .trailing) {
+                                            Text(devType != "" ? "Device Type: " : "")
+                                                .font(.system(size: geometry.size.height * 0.012, weight: .heavy))
+                                                .foregroundColor(Color.black)
+                                            
+                                            Text(devID != "" ? "Device ID: " : "")
+                                                .font(.system(size: geometry.size.height * 0.012, weight: .heavy))
+                                                .foregroundColor(Color.black)
+                                                .padding(.top, geometry.size.height * 0.002)
+                                                
+                                        }
+                                        VStack(alignment: .leading) {
+                                            Text(devType)
+                                                .font(.system(size: geometry.size.height * 0.012, weight: .semibold))
+                                                .foregroundColor(Color.black)
+                                                .italic()
+                                            
+                                            Text(devID)
+                                                .font(.system(size: geometry.size.height * 0.012, weight: .semibold))
+                                                .foregroundColor(Color.black)
+                                                .italic()
+                                                .padding(.top, geometry.size.height * 0.002)
+                                        }
+                                    }
+                                    
+                                    WatchView(devType: devType)
+                                    
+                                }
+                                .frame(width: geometry.size.width * 0.38, height: geometry.size.height * 0.28)
+                                .padding(geometry.size.height * 0.014)
+                                .padding(.vertical, geometry.size.height * 0.005)
+                                .background(Color(hex: 0xF6FCFE).opacity(0.8))
+                                .border(Color(hex: 0xDFE6E9), width: geometry.size.width * 0.003)
+                                .cornerRadius(geometry.size.width * 0.01)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
+                                        .stroke(Color(hex: 0xDFE6E9).opacity(0.6), lineWidth: geometry.size.width * 0.004)
+                                )
+                                .shadow(color: .gray, radius: geometry.size.width * 0.004)
+                                .padding(.top, geometry.size.height * 0.05)
+                                
+                                HStack {
+                                    Button(action: {
+                                        self.registerDevice()
+                                    }) {
+                                        HStack {
+                                            Text("Register New Device")
+                                                .font(.system(size: geometry.size.height * 0.016, weight: .semibold, design: .default))
+                                                .foregroundColor(Color(hex: 0xF5F5F5))
+                                        }
+                                        .frame(width: geometry.size.width * 0.5)
+                                        .padding(geometry.size.height * 0.016)
+                                        .background(Color(hex: 0x4E7FD5))
+                                        .cornerRadius(geometry.size.width * 0.01)
+                                        .shadow(color: .gray, radius: geometry.size.width * 0.004)
+                                    }
+                                }
+                                .padding(.top, geometry.size.height * 0.1)
+                                
+                                HStack {
+                                    Button(action: {
+                                        self.currentView = .Devices
+                                    }) {
+                                        HStack {
+                                            Text("Cancel Registration")
+                                                .font(.system(size: geometry.size.height * 0.012, weight: .semibold, design: .default))
+                                                .foregroundColor(Color(hex: 0xF5F5F5))
+                                                .underline(true)
+                                        }
+                                        .frame(width: geometry.size.width * 0.5)
+                                        .background(Color.clear)
+                                        .cornerRadius(geometry.size.width * 0.01)
+                                        .shadow(color: .gray, radius: geometry.size.width * 0.004)
+                                    }
+                                }
+                                .padding(.top, geometry.size.height * 0.005)
+                                
+                                if let errorMessage = errorMessage {
+                                    Text(errorMessage)
+                                        .foregroundColor(.red)
+                                        .font(.system(size: geometry.size.height * 0.012))
+                                        .padding(.top, geometry.size.height * 0.02)
+                                }
+                                
+                                
+                                Spacer()
+                                
+                            }
+                            Spacer()
+                        }
+                        Spacer()
+                    }
+                }
+            }
+        }
+    }
+    private func registerDevice() {
+        
+        guard !devType.isEmpty, !devID.isEmpty else {
+            errorMessage = "All fields are required."
+            return
+        }
+        
+        let requestBody: [String: Any] = [
+            "devType": devType,
+            "devID": devID,
+        ]
+
+        let url = URL(string: "http://172.20.10.3:8001/register-device")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONSerialization.data(withJSONObject: requestBody)
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                DispatchQueue.main.async {
+                    errorMessage = "That device ID has already been used. Please select another."
+                }
+                return
+            }
+
+            guard let data = data, let response = response as? HTTPURLResponse else {
+                DispatchQueue.main.async {
+                    errorMessage = "That device ID has already been used. Please select another."
+                }
+                return
+            }
+
+            if response.statusCode == 200 {
+                do {
+                    DispatchQueue.main.async {
+                        self.currentView = .Devices
+                    }
+                } catch {
+                    DispatchQueue.main.async {
+                        print("Error decoding JSON: \(error.localizedDescription)")
+                    }
+                }
+            } else {
+                DispatchQueue.main.async {
+                    errorMessage = "That device ID has already been used. Please select another."
+                    return
+                }
+            }
+        }
+        .resume()
     }
 }
 

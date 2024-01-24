@@ -38,7 +38,6 @@ struct ContentView: View {
             PSYCHENewDev(currentView: $currentView)
         case .RemoveDev:
             PSYCHERemoveDev(currentView: $currentView)
-        
         }
         
     }
