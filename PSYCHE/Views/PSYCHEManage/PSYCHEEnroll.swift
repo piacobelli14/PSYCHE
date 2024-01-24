@@ -26,11 +26,8 @@ struct PSYCHEEnroll: View {
     var body: some View {
         
         ZStack {
-            AnimatedStarsView()
+            LinearGradient(gradient: Gradient(colors: [Color(hex: 0x1D2951), Color(hex: 0x1D2951)]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
-                .background(
-                    LinearGradient(gradient: Gradient(colors: [Color(hex: 0x1D2951), Color(hex: 0x093571)]), startPoint: .top, endPoint: .bottom)
-                )
             
             VStack {
                 GeometryReader { geometry in
