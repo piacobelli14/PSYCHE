@@ -49,7 +49,6 @@ struct WatchView: UIViewRepresentable {
 
 struct PSYCHEDevices: View {
     @Binding var currentView: AppView
-    @Binding var selectedPatientID: String
     
     @State private var deviceInfo: [WatchData] = []
     
@@ -72,7 +71,7 @@ struct PSYCHEDevices: View {
                     HStack {
                         HStack {
                             Button(action: {
-                                currentView = .Patients
+                                currentView = .Login
                             }) {
                                 Image(systemName: "arrow.left")
                                     .foregroundColor(.black)
@@ -132,7 +131,7 @@ struct PSYCHEDevices: View {
                         
                         HStack {
                             Button(action: {
-                                currentView = .Patients
+                                currentView = .NewDev
                             }) {
                                 Image(systemName: "plus")
                                     .foregroundColor(.black)

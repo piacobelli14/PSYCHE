@@ -99,7 +99,7 @@ struct ImagePickerView: View {
 }
 
 
-struct PSYCHRegister: View {
+struct PSYCHERegister: View {
     @Binding var currentView: AppView
         
     @State private var imageBase64: String = ""

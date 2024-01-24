@@ -19,7 +19,9 @@ struct ContentView: View {
         case .Reset:
             PSYCHEReset(currentView: $currentView)
         case .Register:
-            PSYCHRegister(currentView: $currentView)
+            PSYCHERegister(currentView: $currentView)
+        case .Manage:
+            PSYCHEManage(currentView: $currentView)
         case .Patients:
             PSYCHEPatients(currentView: $currentView, selectedPatientID: $selectedPatientID)
         case .Enroll:
@@ -28,8 +30,16 @@ struct ContentView: View {
             PSYCHEEdit(currentView: $currentView, selectedPatientID: $selectedPatientID)
         case .Archive:
             PSYCHEArchive(currentView: $currentView, selectedPatientID: $selectedPatientID)
+        case .Swap:
+            PSYCHESwap(currentView: $currentView, selectedPatientID: $selectedPatientID)
         case .Devices:
-            PSYCHEDevices(currentView: $currentView, selectedPatientID: $selectedPatientID)
+            PSYCHEDevices(currentView: $currentView)
+        case .NewDev:
+            PSYCHENewDev(currentView: $currentView)
+        case .RemoveDev:
+            PSYCHERemoveDev(currentView: $currentView)
+        
         }
+        
     }
 }

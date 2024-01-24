@@ -11,9 +11,14 @@ enum AppView {
     case Login
     case Reset
     case Register
+    case Manage
     case Patients
     case Enroll
     case Edit
     case Archive
+    case Swap
     case Devices
+    case NewDev
+    case RemoveDev
+    
 }
