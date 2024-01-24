@@ -15,5 +15,5 @@ enum AppView {
     case Enroll
     case Edit
     case Archive
-    case Swap
+    case Devices
 }

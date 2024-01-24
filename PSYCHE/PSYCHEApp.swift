@@ -12,7 +12,7 @@ struct PSYCHEApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView() // Set the flag as needed
+            ContentView()
         }
     }
 }
