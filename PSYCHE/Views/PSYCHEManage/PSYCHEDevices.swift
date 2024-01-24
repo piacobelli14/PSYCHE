@@ -68,28 +68,50 @@ struct PSYCHEDevices: View {
             
             VStack {
                 GeometryReader { geometry in
+                    
                     HStack {
-                        Button(action: {
-                            currentView = .Patients
-                        }) {
-                            Image(systemName: "arrow.left")
-                                .foregroundColor(.black)
-                                .font(.system(size: geometry.size.height * 0.015))
+                        HStack {
+                            Button(action: {
+                                currentView = .Patients
+                            }) {
+                                Image(systemName: "arrow.left")
+                                    .foregroundColor(.black)
+                                    .font(.system(size: geometry.size.height * 0.015))
+                            }
+                            .background(
+                                Circle()
+                                    .fill(Color.white)
+                                    .frame(width: geometry.size.width * 0.04, height: geometry.size.height * 0.04)
+                                    .shadow(color: Color(hex: 0x4E7FD5), radius: 5, x: 0, y: 0)
+                                    .opacity(0.9)
+                            )
+                            .padding(.top, geometry.size.height * 0.03)
+                            
+                            Spacer()
+                            
+                            Button(action: {
+                                currentView = .Patients
+                            }) {
+                                Image(systemName: "person.2")
+                                    .foregroundColor(.black)
+                                    .font(.system(size: geometry.size.height * 0.015))
+                            }
+                            .background(
+                                Circle()
+                                    .fill(Color.white)
+                                    .frame(width: geometry.size.width * 0.04, height: geometry.size.height * 0.04)
+                                    .shadow(color: Color(hex: 0x4E7FD5), radius: 5, x: 0, y: 0)
+                                    .opacity(0.9)
+                            )
+                            .padding(.top, geometry.size.height * 0.03)
                         }
-                        .background(
-                            Circle()
-                                .fill(Color.white)
-                                .frame(width: geometry.size.width * 0.04, height: geometry.size.height * 0.04)
-                                .shadow(color: Color(hex: 0x4E7FD5), radius: 5, x: 0, y: 0)
-                                .opacity(0.9)
-                        )
-                        .padding(.top, geometry.size.height * 0.03)
                         .padding(.leading, geometry.size.height * 0.035)
+                        .frame(width: geometry.size.width * 0.15)
+                            
                         
                         Spacer()
                         
                         HStack {
-                            
                             Button(action: {
                                 currentView = .Patients
                             }) {
@@ -130,6 +152,7 @@ struct PSYCHEDevices: View {
                         .frame(width: geometry.size.width * 0.15)
                     }
                     
+                 
                     VStack(alignment: .center) {
                         HStack {
                             Spacer()
@@ -145,12 +168,10 @@ struct PSYCHEDevices: View {
                                 Spacer()
                             }
                             .frame(width: geometry.size.width * 0.9)
-                            .frame(height: geometry.size.height * 0.8)
+                            .frame(height: geometry.size.height * 0.86)
                             Spacer()
                         }
                         .padding(.top, geometry.size.height * 0.1)
-                        
-                        
                     }
                 }
             }
