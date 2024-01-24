@@ -104,11 +104,30 @@ struct PSYCHEDevices: View {
                                     .opacity(0.9)
                             )
                             .padding(.top, geometry.size.height * 0.03)
+                            
+                            Spacer()
+                            
+                            Button(action: {
+                                currentView = .Patients
+                            }) {
+                                Image(systemName: "gear")
+                                    .foregroundColor(.black)
+                                    .font(.system(size: geometry.size.height * 0.015))
+                            }
+                            .background(
+                                Circle()
+                                    .fill(Color.white)
+                                    .frame(width: geometry.size.width * 0.04, height: geometry.size.height * 0.04)
+                                    .shadow(color: Color(hex: 0x4E7FD5), radius: 5, x: 0, y: 0)
+                                    .opacity(0.9)
+                            )
+                            .padding(.top, geometry.size.height * 0.03)
                         }
                         .padding(.leading, geometry.size.height * 0.035)
-                        .frame(width: geometry.size.width * 0.15)
-                            
+                        .frame(width: geometry.size.width * 0.2)
                         
+                        
+                            
                         Spacer()
                         
                         HStack {
