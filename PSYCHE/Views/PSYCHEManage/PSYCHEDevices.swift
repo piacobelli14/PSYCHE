@@ -180,6 +180,9 @@ struct PSYCHEDevices: View {
         .onAppear {
             self.getDeviceInfo()
         }
+        .onTapGesture {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
     }
     private func deviceCell(for device: WatchData, geometry: GeometryProxy) -> some View {
             VStack {

@@ -241,6 +241,9 @@ struct PSYCHESwap: View {
             self.getAssignmentInfo()
             self.getDeviceInfo()
         }
+        .onTapGesture {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
     }
     private func getAssignmentInfo() {
         

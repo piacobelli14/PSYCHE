@@ -168,6 +168,9 @@ struct PSYCHEArchive: View {
         .onAppear {
             archivePatientPlaceholders(patientID: selectedPatientID)
         }
+        .onTapGesture {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
     }
     func archivePatientPlaceholders(patientID: String) {
         guard let url = URL(string: "http://10.111.26.70:8001/selected-patient-placeholders") else { return }

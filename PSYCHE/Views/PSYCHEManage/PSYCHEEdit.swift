@@ -359,6 +359,9 @@ struct PSYCHEEdit: View {
         .onAppear {
             editPatientPlaceholders(patientID: selectedPatientID)
         }
+        .onTapGesture {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
     }
     func editPatientPlaceholders(patientID: String) {
         guard let url = URL(string: "http://10.111.26.70:8001/selected-patient-placeholders") else { return }
