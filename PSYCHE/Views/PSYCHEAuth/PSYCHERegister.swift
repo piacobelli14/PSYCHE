@@ -515,7 +515,7 @@ struct PSYCHERegister: View {
             "image": imageBase64,
         ]
 
-        let url = URL(string: "http://172.20.10.3:8001/register-user")!
+        let url = URL(string: "http://10.111.26.70:8001/register-user")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

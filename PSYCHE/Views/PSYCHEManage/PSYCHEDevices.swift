@@ -265,7 +265,7 @@ struct PSYCHEDevices: View {
         }
     
     private func getDeviceInfo() {
-        let url = URL(string: "http://172.20.10.3:8001/get-devices")!
+        let url = URL(string: "http://10.111.26.70:8001/get-devices")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
