@@ -465,20 +465,20 @@ struct PSYCHERegister: View {
     }
     private func validateAndRegisterUser() {
         guard !firstName.isEmpty, !lastName.isEmpty, !email.isEmpty, !username.isEmpty, !newPassword.isEmpty, !confirmPassword.isEmpty else {
-            errorMessage = "All fields are required."
+            self.errorMessage = "All fields are required."
             return
         }
 
         guard newPassword == confirmPassword else {
-            errorMessage = "Passwords do not match."
+            self.errorMessage = "Passwords do not match."
             return
         }
 
         guard isValidPassword(newPassword) else {
-            errorMessage = "Password must contain at least 8 characters, including uppercase, lowercase, digits, and special characters."
+            self.errorMessage = "Password must contain at least 8 characters, including uppercase, lowercase, digits, and special characters."
             return
         }
-        registerUser()
+        self.registerUser()
     }
     private func isValidPassword(_ password: String) -> Bool {
         let passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&#])[A-Za-z\\d$@$!%*?&#]{8,}"
@@ -487,22 +487,22 @@ struct PSYCHERegister: View {
     }
     private func registerUser() {
         guard !firstName.isEmpty, !lastName.isEmpty, !email.isEmpty, !username.isEmpty, !newPassword.isEmpty, !confirmPassword.isEmpty else {
-            errorMessage = "All fields are required."
+            self.errorMessage = "All fields are required."
             return
         }
 
         guard newPassword == confirmPassword else {
-            errorMessage = "Passwords do not match."
+            self.errorMessage = "Passwords do not match."
             return
         }
 
         guard isValidPassword(newPassword) else {
-            errorMessage = "Password must contain at least 8 characters, including uppercase, lowercase, digits, and special characters."
+            self.errorMessage = "Password must contain at least 8 characters, including uppercase, lowercase, digits, and special characters."
             return
         }
         
         guard !imageBase64.isEmpty else {
-                errorMessage = "Please select an image."
+            self.errorMessage = "Please select an image."
                 return
         }
 
@@ -523,19 +523,19 @@ struct PSYCHERegister: View {
 
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
-                errorMessage = "Registration failed: \(error.localizedDescription)"
+                self.errorMessage = "Registration failed: \(error.localizedDescription)"
                 return
             }
 
             guard data == data, let response = response as? HTTPURLResponse else {
-                errorMessage = "Registration failed: No response received."
+                self.errorMessage = "Registration failed: No response received."
                 return
             }
 
             if response.statusCode == 200 {
                 self.currentView = .Login
             } else {
-                errorMessage = "This username or email is already taken. Please choose a different username or email."
+                self.errorMessage = "This username or email is already taken. Please choose a different username or email."
             }
         }.resume()
     }

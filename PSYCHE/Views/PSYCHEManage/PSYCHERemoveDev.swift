@@ -74,7 +74,7 @@ struct PSYCHERemoveDev: View {
                                         .id(devIDs)
                                         .pickerStyle(MenuPickerStyle())
                                         .onChange(of: selectedDevID) { _ in
-                                            updateSelectedDeviceType()
+                                            self.updateSelectedDeviceType()
                                         }
                                         .pickerStyle(MenuPickerStyle())
                                         .padding(geometry.size.height * 0.014)
@@ -274,7 +274,7 @@ struct PSYCHERemoveDev: View {
     private func removeDevice() {
         
         guard !selectedDevID.isEmpty else {
-            errorMessage = "All fields are required."
+            self.errorMessage = "All fields are required."
             return
         }
         

@@ -225,7 +225,7 @@ struct PSYCHELogin: View {
                         
                         HStack {
                             Button(action: {
-                                authenticateUser()
+                                self.authenticateUser()
                             }) {
                                 HStack {
                                     Text("Login to System")

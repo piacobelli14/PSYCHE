@@ -299,7 +299,7 @@ struct PSYCHEEnroll: View {
                                     
                                     HStack {
                                         Button(action: {
-                                            enrollPatient()//self.validateAndRegisterUser()
+                                            self.enrollPatient()
                                         }) {
                                             HStack {
                                                 Text("Confirm New Patient")
@@ -353,7 +353,7 @@ struct PSYCHEEnroll: View {
     private func enrollPatient() {
         
         guard !ptFirstName.isEmpty, !ptLastName.isEmpty, !ptID.isEmpty, !selectedAge.isEmpty, !selectedSex.isEmpty, !selectedUnit.isEmpty else {
-            errorMessage = "All fields are required."
+            self.errorMessage = "All fields are required."
             return
         }
         
@@ -374,14 +374,14 @@ struct PSYCHEEnroll: View {
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 DispatchQueue.main.async {
-                    errorMessage = "That patient ID has already been used. Please select another."
+                    self.errorMessage = "That patient ID has already been used. Please select another."
                 }
                 return
             }
 
             guard let data = data, let response = response as? HTTPURLResponse else {
                 DispatchQueue.main.async {
-                    errorMessage = "That patient ID has already been used. Please select another."
+                    self.errorMessage = "That patient ID has already been used. Please select another."
                 }
                 return
             }
@@ -398,7 +398,7 @@ struct PSYCHEEnroll: View {
                 }
             } else {
                 DispatchQueue.main.async {
-                    errorMessage = "That patient ID has already been used. Please select another."
+                    self.errorMessage = "That patient ID has already been used. Please select another."
                     return
                 }
             }

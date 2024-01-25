@@ -148,7 +148,7 @@ struct PSYCHEReset: View {
                             HStack {
                                 Spacer()
                                 Button(action: {
-                                    initiatePasswordReset()
+                                    self.initiatePasswordReset()
                                 }) {
                                     HStack {
                                         Text("Reset Password")
@@ -334,7 +334,7 @@ struct PSYCHEReset: View {
                                 
                                 HStack {
                                     Button(action: {
-                                        validateNewPassword()
+                                        self.validateNewPassword()
                                     }) {
                                         if passwordsMatch && passwordMeetsCriteria {
                                             HStack {
@@ -430,20 +430,20 @@ struct PSYCHEReset: View {
     }
     private func validateNewPassword() {
         guard !newPassword.isEmpty, !confirmPassword.isEmpty else {
-            errorMessage = "All fields are required."
+            self.errorMessage = "All fields are required."
             return
         }
 
         guard newPassword == confirmPassword else {
-            errorMessage = "Passwords do not match."
+            self.errorMessage = "Passwords do not match."
             return
         }
 
         guard isValidPassword(newPassword) else {
-            errorMessage = "Password must contain at least 8 characters, including uppercase, lowercase, digits, and special characters."
+            self.errorMessage = "Password must contain at least 8 characters, including uppercase, lowercase, digits, and special characters."
             return
         }
-        setNewPassword()
+        self.setNewPassword()
     }
     private func isValidPassword(_ password: String) -> Bool {
         let passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&#])[A-Za-z\\d$@$!%*?&#]{8,}"
@@ -464,12 +464,12 @@ struct PSYCHEReset: View {
 
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
-                errorMessage = "Password reset failed: \(error.localizedDescription)."
+                self.errorMessage = "Password reset failed: \(error.localizedDescription)."
                 return
             }
 
             guard let data = data, let response = response as? HTTPURLResponse else {
-                errorMessage = "Password reset failed: No response received."
+                self.errorMessage = "Password reset failed: No response received."
                 return
             }
             

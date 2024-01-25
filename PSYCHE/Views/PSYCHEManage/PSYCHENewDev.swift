@@ -229,7 +229,7 @@ struct PSYCHENewDev: View {
     private func registerDevice() {
         
         guard !devType.isEmpty, !devID.isEmpty else {
-            errorMessage = "All fields are required."
+            self.errorMessage = "All fields are required."
             return
         }
         
@@ -247,14 +247,14 @@ struct PSYCHENewDev: View {
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 DispatchQueue.main.async {
-                    errorMessage = "That device ID has already been used. Please select another."
+                    self.errorMessage = "That device ID has already been used. Please select another."
                 }
                 return
             }
 
             guard let data = data, let response = response as? HTTPURLResponse else {
                 DispatchQueue.main.async {
-                    errorMessage = "That device ID has already been used. Please select another."
+                    self.errorMessage = "That device ID has already been used. Please select another."
                 }
                 return
             }
@@ -271,7 +271,7 @@ struct PSYCHENewDev: View {
                 }
             } else {
                 DispatchQueue.main.async {
-                    errorMessage = "That device ID has already been used. Please select another."
+                    self.errorMessage = "That device ID has already been used. Please select another."
                     return
                 }
             }

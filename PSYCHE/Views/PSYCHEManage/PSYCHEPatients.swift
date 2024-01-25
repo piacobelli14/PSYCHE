@@ -217,7 +217,7 @@ struct PSYCHEPatients: View {
                                             .multilineTextAlignment(.center)
                                             .padding(.horizontal, geometry.size.width * 0.01)
                                             .onChange(of: isCurrent) { newValue in
-                                                fetchPatientInfo()
+                                                self.fetchPatientInfo()
                                             }
 
                                         Spacer()
@@ -312,7 +312,7 @@ struct PSYCHEPatients: View {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
         .onAppear {
-            fetchPatientInfo()
+            self.fetchPatientInfo()
         }
     }
 

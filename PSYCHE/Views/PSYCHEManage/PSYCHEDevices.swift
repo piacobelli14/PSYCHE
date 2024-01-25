@@ -178,7 +178,7 @@ struct PSYCHEDevices: View {
             }
         }
         .onAppear {
-            getDeviceInfo()
+            self.getDeviceInfo()
         }
     }
     private func deviceCell(for device: WatchData, geometry: GeometryProxy) -> some View {

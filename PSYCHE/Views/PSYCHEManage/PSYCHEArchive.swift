@@ -112,9 +112,9 @@ struct PSYCHEArchive: View {
                                     HStack {
                                         Button(action: {
                                             if (validationCheck) {
-                                                archivePatient()
+                                                self.archivePatient()
                                             } else {
-                                                errorMessage = "Please check the box above to confirm the archive."
+                                                self.errorMessage = "Please check the box above to confirm the archive."
                                             }
                                         }) {
                                             HStack {

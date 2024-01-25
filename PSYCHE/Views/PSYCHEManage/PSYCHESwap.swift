@@ -238,8 +238,8 @@ struct PSYCHESwap: View {
             }
         }
         .onAppear {
-            getAssignmentInfo()
-            getDeviceInfo()
+            self.getAssignmentInfo()
+            self.getDeviceInfo()
         }
     }
     private func getAssignmentInfo() {
@@ -345,7 +345,7 @@ struct PSYCHESwap: View {
     private func swapDevice() {
         
         guard !newDevID.isEmpty else {
-            errorMessage = "All fields are required."
+            self.errorMessage = "All fields are required."
             return
         }
         
