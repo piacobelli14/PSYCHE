@@ -318,7 +318,6 @@ struct PSYCHEDevices: View {
                     let decodedData = try JSONDecoder().decode([WatchData].self, from: data)
                     DispatchQueue.main.async {
                         self.deviceInfo = decodedData
-                        print("Fetched devices: \(self.deviceInfo)")
                     }
                 } catch {
                     DispatchQueue.main.async {

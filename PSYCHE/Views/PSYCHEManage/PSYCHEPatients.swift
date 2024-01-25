@@ -261,7 +261,7 @@ struct PSYCHEPatients: View {
                                     
                                     Button(
                                         action: {
-                                            //
+                                            self.currentView = .Swap
                                         },
                                         label: {
                                             Image(systemName: "applewatch")

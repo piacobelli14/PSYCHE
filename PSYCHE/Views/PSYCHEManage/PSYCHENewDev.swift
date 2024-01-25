@@ -53,7 +53,6 @@ struct PSYCHENewDev: View {
                             Spacer()
                             VStack {
                                 Spacer()
-                                
                                 VStack(alignment: .center) {
                                     HStack {
                                         Spacer()
