@@ -23,7 +23,6 @@
 		BE8671962B60230700810613 /* Fitbit Sense.dae in Resources */ = {isa = PBXBuildFile; fileRef = BE8671952B60230700810613 /* Fitbit Sense.dae */; };
 		BE86719A2B61789700810613 /* PSYCHENewDev.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8671992B61789700810613 /* PSYCHENewDev.swift */; };
 		BE86719C2B6178AA00810613 /* PSYCHERemoveDev.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE86719B2B6178AA00810613 /* PSYCHERemoveDev.swift */; };
-		BE86719E2B6178BC00810613 /* PSYCHEManage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE86719D2B6178BC00810613 /* PSYCHEManage.swift */; };
 		BE8671A02B6178CB00810613 /* PSYCHESwap.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE86719F2B6178CB00810613 /* PSYCHESwap.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,7 +44,6 @@
 		BE8671952B60230700810613 /* Fitbit Sense.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = "Fitbit Sense.dae"; sourceTree = "<group>"; };
 		BE8671992B61789700810613 /* PSYCHENewDev.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSYCHENewDev.swift; sourceTree = "<group>"; };
 		BE86719B2B6178AA00810613 /* PSYCHERemoveDev.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSYCHERemoveDev.swift; sourceTree = "<group>"; };
-		BE86719D2B6178BC00810613 /* PSYCHEManage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSYCHEManage.swift; sourceTree = "<group>"; };
 		BE86719F2B6178CB00810613 /* PSYCHESwap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSYCHESwap.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,7 +127,6 @@
 				BE8671802B5C926000810613 /* PSYCHERegister.swift */,
 				BE8671782B5C36EA00810613 /* PSYCHELogin.swift */,
 				BE86717E2B5C7C2E00810613 /* PSYCHEReset.swift */,
-				BE86719D2B6178BC00810613 /* PSYCHEManage.swift */,
 			);
 			path = PSYCHEAuth;
 			sourceTree = "<group>";
@@ -229,7 +226,6 @@
 				BE86719A2B61789700810613 /* PSYCHENewDev.swift in Sources */,
 				BE8671A02B6178CB00810613 /* PSYCHESwap.swift in Sources */,
 				BE8671742B5C367600810613 /* ViewControllerEnum.swift in Sources */,
-				BE86719E2B6178BC00810613 /* PSYCHEManage.swift in Sources */,
 				BE8671862B5EFA8600810613 /* PSYCHEEnroll.swift in Sources */,
 				BE86718C2B5EFAC200810613 /* PSYCHEDevices.swift in Sources */,
 				BE8671842B5DD81800810613 /* PSYCHEPatients.swift in Sources */,

@@ -20,8 +20,6 @@ struct ContentView: View {
             PSYCHEReset(currentView: $currentView)
         case .Register:
             PSYCHERegister(currentView: $currentView)
-        case .Manage:
-            PSYCHEManage(currentView: $currentView)
         case .Patients:
             PSYCHEPatients(currentView: $currentView, selectedPatientID: $selectedPatientID)
         case .Enroll:
