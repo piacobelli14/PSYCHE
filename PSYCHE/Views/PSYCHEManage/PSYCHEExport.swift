@@ -5,17 +5,30 @@
 //  Created by Peter Iacobelli on 1/27/24.
 //
 
+import Foundation
 import SwiftUI
 
+struct Session: Decodable, Hashable {
+    let name: String
+    let sizeBytes: Int
+    let rows: Int
+    let creationTime: String
+}
+
 struct SessionResponse: Decodable {
-    let sessions: [String]
+    let sessions: [Session]
 }
 
 struct PSYCHEExport: View {
     @Binding var currentView: AppView
     
-    @State private var availableSessions: [String] = []
+    @State private var availableSessions: [Session] = []
+    @State private var selectedSessionIndex: Int? = nil
     @State private var selectedSession: String = ""
+    
+    @State private var selectedFileSize: String = ""
+    @State private var selectedFileRows: String = ""
+    @State private var selectedFileCreation: String = ""
     
     @State private var errorMessage: String = ""
     
@@ -31,36 +44,66 @@ struct PSYCHEExport: View {
             VStack {
                 GeometryReader { geometry in
                     
-                    HStack {
-                        
+                    VStack {
                         Spacer()
-                        
-                        Menu {
-                            ForEach(availableSessions, id: \.self) { session in
-                                Button(action: {
-                                    selectedSession = session
-                                }) {
-                                    Text(session)
+                        HStack {
+                            Spacer()
+                            Menu {
+                                ForEach(availableSessions, id: \.self) { session in
+                                    Button(action: {
+                                        self.selectedSession = session.name
+                                        self.selectedFileSize = "\(String(format: "%.2f MB", Double(session.sizeBytes) / 1024.0 / 1024.0))"
+                                        self.selectedFileRows = "\(session.rows)"
+                                        self.selectedFileCreation = session.creationTime
+                                    }) {
+                                        Text(session.name)
+                                            .foregroundColor(.black)
+                                            .font(.system(size: geometry.size.height * 0.02))
+                                            .padding(.vertical, 5)
+                                        }
+                                    }
+                                } label: {
+                                    Text(selectedSession.isEmpty ? "Select Session" : selectedSession)
                                         .foregroundColor(.black)
+                                        .frame(width: geometry.size.width * 0.6)
+                                        // Adjust the font size for the label if necessary
+                                        .font(.system(size: geometry.size.height * 0.016, weight: .light, design: .default))
+                                        .multilineTextAlignment(.center)
+                                        .padding(geometry.size.height * 0.016)
+                                        .background(Color(hex: 0xF6FCFE))
+                                        .border(Color(hex: 0xDFE6E9), width: geometry.size.width * 0.003)
+                                        .cornerRadius(geometry.size.width * 0.01)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
+                                                .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
+                                        )
+                                        .shadow(color: .gray, radius: geometry.size.width * 0.004)
                                 }
-                            }
-                        } label: {
-                            Text(selectedSession.isEmpty ? "Select Session" : selectedSession)
-                                .padding()
-                                .foregroundColor(.white)
-                                .background(Color.blue)
-                                .cornerRadius(5)
+                                .frame(width: geometry.size.width * 0.6)
+                            Spacer()
                         }
-                        .padding()
                         
-                        Spacer()
-                        
+                        HStack {
+                            Text(selectedFileSize != "" ? "File Size: \(selectedFileSize)" : "")
+                                .foregroundColor(Color.white)
+                                .font(.system(size: geometry.size.height * 0.016, weight: .semibold))
+                            
+                            Spacer()
+                            
+                            Text(selectedFileSize != "" ? "Created: \(selectedFileCreation)" : "")
+                                .foregroundColor(Color.white)
+                                .font(.system(size: geometry.size.height * 0.016, weight: .semibold))
+                        }
+                        .frame(width: geometry.size.width * 0.6)
+                        .padding(.top, geometry.size.height * 0.02)
+                       Spacer()
                     }
+                        
                 }
             }
         }
         .onAppear {
-            getDeviceInfo()  // Call getDeviceInfo() when the view appears
+            getDeviceInfo()
         }
     }
     
