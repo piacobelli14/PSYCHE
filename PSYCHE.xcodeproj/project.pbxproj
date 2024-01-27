@@ -24,6 +24,7 @@
 		BE86719A2B61789700810613 /* PSYCHENewDev.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8671992B61789700810613 /* PSYCHENewDev.swift */; };
 		BE86719C2B6178AA00810613 /* PSYCHERemoveDev.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE86719B2B6178AA00810613 /* PSYCHERemoveDev.swift */; };
 		BE8671A02B6178CB00810613 /* PSYCHESwap.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE86719F2B6178CB00810613 /* PSYCHESwap.swift */; };
+		BE8671A22B6579AB00810613 /* PSYCHEExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8671A12B6579AB00810613 /* PSYCHEExport.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		BE8671992B61789700810613 /* PSYCHENewDev.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSYCHENewDev.swift; sourceTree = "<group>"; };
 		BE86719B2B6178AA00810613 /* PSYCHERemoveDev.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSYCHERemoveDev.swift; sourceTree = "<group>"; };
 		BE86719F2B6178CB00810613 /* PSYCHESwap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSYCHESwap.swift; sourceTree = "<group>"; };
+		BE8671A12B6579AB00810613 /* PSYCHEExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSYCHEExport.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 		BE8671822B5DD75400810613 /* PSYCHEManage */ = {
 			isa = PBXGroup;
 			children = (
+				BE8671A12B6579AB00810613 /* PSYCHEExport.swift */,
 				BE86719F2B6178CB00810613 /* PSYCHESwap.swift */,
 				BE86719B2B6178AA00810613 /* PSYCHERemoveDev.swift */,
 				BE8671992B61789700810613 /* PSYCHENewDev.swift */,
@@ -231,6 +234,7 @@
 				BE8671842B5DD81800810613 /* PSYCHEPatients.swift in Sources */,
 				BE86719C2B6178AA00810613 /* PSYCHERemoveDev.swift in Sources */,
 				BE8671632B5C338300810613 /* PSYCHEApp.swift in Sources */,
+				BE8671A22B6579AB00810613 /* PSYCHEExport.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
