@@ -8,10 +8,10 @@
 import Foundation
 import SwiftUI
 
+
 struct Session: Decodable, Hashable {
     let name: String
     let sizeBytes: Int
-    let rows: Int
     let creationTime: String
 }
 
@@ -27,8 +27,9 @@ struct PSYCHEExport: View {
     @State private var selectedSession: String = ""
     
     @State private var selectedFileSize: String = ""
-    @State private var selectedFileRows: String = ""
     @State private var selectedFileCreation: String = ""
+    
+    @State private var validationCheck = false
     
     @State private var errorMessage: String = ""
     
@@ -48,12 +49,28 @@ struct PSYCHEExport: View {
                         Spacer()
                         HStack {
                             Spacer()
+                            
+                            Image(systemName: "printer")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: geometry.size.width * 0.04, height: geometry.size.height * 0.04)
+                                .padding(.trailing, geometry.size.width * 0.025)
+                                                                
+                            Text("Download a Session")
+                                .font(.system(size: geometry.size.height * 0.025, weight: .heavy))
+                                .multilineTextAlignment(.center)
+                      
+                            Spacer()
+                        }
+                        .foregroundColor(Color.white)
+                        
+                        HStack {
+                            Spacer()
                             Menu {
                                 ForEach(availableSessions, id: \.self) { session in
                                     Button(action: {
                                         self.selectedSession = session.name
                                         self.selectedFileSize = "\(String(format: "%.2f MB", Double(session.sizeBytes) / 1024.0 / 1024.0))"
-                                        self.selectedFileRows = "\(session.rows)"
                                         self.selectedFileCreation = session.creationTime
                                     }) {
                                         Text(session.name)
@@ -66,7 +83,6 @@ struct PSYCHEExport: View {
                                     Text(selectedSession.isEmpty ? "Select Session" : selectedSession)
                                         .foregroundColor(.black)
                                         .frame(width: geometry.size.width * 0.6)
-                                        // Adjust the font size for the label if necessary
                                         .font(.system(size: geometry.size.height * 0.016, weight: .light, design: .default))
                                         .multilineTextAlignment(.center)
                                         .padding(geometry.size.height * 0.016)
@@ -82,6 +98,7 @@ struct PSYCHEExport: View {
                                 .frame(width: geometry.size.width * 0.6)
                             Spacer()
                         }
+                        .padding(.top, geometry.size.height * 0.12)
                         
                         HStack {
                             Text(selectedFileSize != "" ? "File Size: \(selectedFileSize)" : "")
@@ -96,6 +113,68 @@ struct PSYCHEExport: View {
                         }
                         .frame(width: geometry.size.width * 0.6)
                         .padding(.top, geometry.size.height * 0.02)
+                        
+                        HStack {
+                            Image(systemName: validationCheck ? "checkmark.square.fill" : "square")
+                                .frame(width: geometry.size.width * 0.025)
+                                .foregroundColor(.white) // Set the checkmark color to white
+                                .font(.system(size: geometry.size.height * 0.025))
+                                .onTapGesture {
+                                    validationCheck.toggle()
+                                }
+                            
+                            Text("I understand that downloading this session will remove it from storage on the PSYCHE servers and end the current session. This cannot be undone.")
+                                .font(.system(size: geometry.size.height * 0.01, weight: .semibold))
+                                .foregroundColor(Color.white)
+                                .opacity(0.9)
+                                .padding(.leading, geometry.size.width * 0.02)
+                                .multilineTextAlignment(.leading)
+                        }
+                        .padding(.top, geometry.size.height * 0.01)
+                        .frame(width: geometry.size.width * 0.6)
+                        
+                        HStack {
+                            Button(action: {
+                                self.downloadSessionFile()
+                            }) {
+                                HStack {
+                                    Text("Confirm Download")
+                                        .font(.system(size: geometry.size.height * 0.016, weight: .semibold, design: .default))
+                                        .foregroundColor(Color(hex: 0xF5F5F5))
+                                }
+                                .frame(width: geometry.size.width * 0.5)
+                                .padding(geometry.size.height * 0.016)
+                                .background(Color(hex: 0x4E7FD5))
+                                .cornerRadius(geometry.size.width * 0.01)
+                                .shadow(color: .gray, radius: geometry.size.width * 0.004)
+                            }
+                        }
+                        .padding(.top, geometry.size.height * 0.12)
+                        
+                        HStack {
+                            Button(action: {
+                                self.currentView = .Devices
+                            }) {
+                                HStack {
+                                    Text("Cancel Download")
+                                        .font(.system(size: geometry.size.height * 0.012, weight: .semibold, design: .default))
+                                        .foregroundColor(Color(hex: 0xF5F5F5))
+                                        .underline(true)
+                                }
+                                .frame(width: geometry.size.width * 0.5)
+                                .background(Color.clear)
+                                .cornerRadius(geometry.size.width * 0.01)
+                                .shadow(color: .gray, radius: geometry.size.width * 0.004)
+                            }
+                        }
+                        .padding(.top, geometry.size.height * 0.005)
+                        
+                        if let errorMessage = errorMessage {
+                            Text(errorMessage)
+                                .foregroundColor(.red)
+                                .font(.system(size: geometry.size.height * 0.012))
+                                .padding(.top, geometry.size.height * 0.02)
+                        }
                        Spacer()
                     }
                         
@@ -152,5 +231,50 @@ struct PSYCHEExport: View {
             }
         }
         .resume()
+    }
+    private func downloadSessionFile() {
+        guard !self.selectedSession.isEmpty else {
+            self.errorMessage = "No session selected."
+            return
+        }
+
+        let url = URL(string: "http://172.20.10.3:8001/export-sessions")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let body: [String: Any] = ["fileName": self.selectedSession]
+        request.httpBody = try? JSONSerialization.data(withJSONObject: body)
+
+        let task = URLSession.shared.downloadTask(with: request) { (tempURL, response, error) in
+            guard let tempURL = tempURL else {
+                DispatchQueue.main.async {
+                    self.errorMessage = "Download failed: \(error?.localizedDescription ?? "Unknown error")"
+                }
+                return
+            }
+
+            do {
+                let fileManager = FileManager.default
+                let documentsPath = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                let destinationURL = documentsPath.appendingPathComponent(self.selectedSession)
+
+                // Delete any existing file
+                if fileManager.fileExists(atPath: destinationURL.path) {
+                    try fileManager.removeItem(at: destinationURL)
+                }
+
+                // Move the downloaded file to your directory
+                try fileManager.moveItem(at: tempURL, to: destinationURL)
+
+                DispatchQueue.main.async {
+                    self.currentView = .Devices
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.errorMessage = "File save error: \(error.localizedDescription)"
+                }
+            }
+        }
+        task.resume()
     }
 }

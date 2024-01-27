@@ -306,7 +306,7 @@ struct PSYCHEEdit: View {
                                     
                                     HStack {
                                         Button(action: {
-                                            editPatient()
+                                            self.editPatient()
                                         }) {
                                             HStack {
                                                 Text("Confirm Patient Edits")
