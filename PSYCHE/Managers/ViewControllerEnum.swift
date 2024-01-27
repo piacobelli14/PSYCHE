@@ -19,5 +19,5 @@ enum AppView {
     case Devices
     case NewDev
     case RemoveDev
-    
+    case Export
 }

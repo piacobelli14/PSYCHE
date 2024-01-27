@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct ContentView: View {
-    @State private var currentView: AppView = .Devices
+    @State private var currentView: AppView = .Export
     @State private var selectedPatientID: String = ""
 
     var body: some View {
@@ -36,6 +36,8 @@ struct ContentView: View {
             PSYCHENewDev(currentView: $currentView)
         case .RemoveDev:
             PSYCHERemoveDev(currentView: $currentView)
+        case .Export:
+            PSYCHEExport(currentView: $currentView)
         }
         
     }
