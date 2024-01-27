@@ -45,12 +45,31 @@ struct PSYCHEExport: View {
             VStack {
                 GeometryReader { geometry in
                     
+                    HStack {
+                        Button(action: {
+                            currentView = .Devices
+                        }) {
+                            Image(systemName: "arrow.left")
+                                .foregroundColor(.black)
+                                .font(.system(size: geometry.size.height * 0.015))
+                        }
+                        .background(
+                            Circle()
+                                .fill(Color.white)
+                                .frame(width: geometry.size.width * 0.04, height: geometry.size.height * 0.04)
+                                .shadow(color: Color(hex: 0x4E7FD5), radius: 5, x: 0, y: 0)
+                                .opacity(0.9)
+                        )
+                        .padding(.top, geometry.size.height * 0.03)
+                        .padding(.leading, geometry.size.height * 0.035)
+                    }
+                    
                     VStack {
                         Spacer()
                         HStack {
                             Spacer()
                             
-                            Image(systemName: "printer")
+                            Image(systemName: "square.and.arrow.down.on.square")
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: geometry.size.width * 0.04, height: geometry.size.height * 0.04)
@@ -135,7 +154,9 @@ struct PSYCHEExport: View {
                         
                         HStack {
                             Button(action: {
-                                self.downloadSessionFile()
+                                if (validationCheck) {
+                                    self.downloadSessionFile()
+                                }
                             }) {
                                 HStack {
                                     Text("Confirm Download")
@@ -263,7 +284,6 @@ struct PSYCHEExport: View {
                     try fileManager.removeItem(at: destinationURL)
                 }
 
-                // Move the downloaded file to your directory
                 try fileManager.moveItem(at: tempURL, to: destinationURL)
 
                 DispatchQueue.main.async {
