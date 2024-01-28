@@ -55,6 +55,7 @@ struct PSYCHESwap: View {
                         .padding(.top, geometry.size.height * 0.03)
                         .padding(.leading, geometry.size.height * 0.035)
                     }
+                    .background(Color(hex: 0x1D2951))
                     
                     VStack(alignment: .center) {
                         
@@ -78,6 +79,7 @@ struct PSYCHESwap: View {
                                     Spacer()
                                 }
                                 .foregroundColor(Color.white)
+                                .background(Color(hex: 0x1D2951))
                                 
                                 if (currentDevType != "None" && currentDevID != "None") {
                                     VStack {
@@ -130,6 +132,7 @@ struct PSYCHESwap: View {
                                         .multilineTextAlignment(.center)
                                         .padding(.top, geometry.size.height * 0.04)
                                         .frame(width: geometry.size.width * 0.7)
+                                        .background(Color(hex: 0x1D2951))
                                 }
                                 
                                 VStack(alignment: .center) {
@@ -177,6 +180,7 @@ struct PSYCHESwap: View {
                                     }
                                 }
                                 .padding(.top, geometry.size.height * 0.05)
+                                .background(Color(hex: 0x1D2951))
                                 
                                 if (newDevID != "") {
                                     Text("Assign \(ptName) device \(newDevID) and start collecting data?")
@@ -185,6 +189,7 @@ struct PSYCHESwap: View {
                                         .multilineTextAlignment(.center)
                                         .padding(.top, geometry.size.height * 0.04)
                                         .frame(width: geometry.size.width * 0.7)
+                                        .background(Color(hex: 0x1D2951))
                                 } else {
                                     Text("")
                                         .font(.system(size: geometry.size.height * 0.016, weight: .semibold))
@@ -211,6 +216,7 @@ struct PSYCHESwap: View {
                                     }
                                 }
                                 .padding(.top, geometry.size.height * 0.04)
+                                .background(Color(hex: 0x1D2951))
                                 
                                 HStack {
                                     Button(action: {
@@ -229,6 +235,7 @@ struct PSYCHESwap: View {
                                     }
                                 }
                                 .padding(.top, geometry.size.height * 0.005)
+                                .background(Color(hex: 0x1D2951))
                                 
                                 if let errorMessage = errorMessage {
                                     Text(errorMessage)
