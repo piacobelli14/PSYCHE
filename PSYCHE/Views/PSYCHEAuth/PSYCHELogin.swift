@@ -31,22 +31,27 @@ struct passwordInputDynamicStyle: ViewModifier {
 }
 
 struct AnimatedStarsView: View {
-    let numberOfStars = 100
-    let starSize = CGSize(width: 2, height: 2)
+    let numberOfStars = 200
+    var starSize = CGSize(width: 2, height: 2) // Initial star size, can be adjusted based on the geometry
     
     var body: some View {
-        Canvas { context, size in
-            for _ in 0..<numberOfStars {
-                var star = Path()
-                let xPosition = Double.random(in: 0..<size.width)
-                let yPosition = Double.random(in: 0..<size.height)
+        GeometryReader { geometry in
+            Canvas { context, size in
+                let adjustedStarSize = CGSize(width: geometry.size.width * 0.002, height: geometry.size.height * 0.002)
+                
+                for _ in 0..<numberOfStars {
+                    var star = Path()
+                    let xPosition = Double.random(in: 0..<size.width)
+                    let yPosition = Double.random(in: 0..<size.height)
 
-                star.addEllipse(in: CGRect(x: xPosition, y: yPosition, width: starSize.width, height: starSize.height))
-                context.fill(star, with: .color(.white))
+                    // Use adjustedStarSize instead of the fixed starSize
+                    star.addEllipse(in: CGRect(x: xPosition, y: yPosition, width: adjustedStarSize.width, height: adjustedStarSize.height))
+                    context.fill(star, with: .color(.white))
+                }
+
             }
-
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 

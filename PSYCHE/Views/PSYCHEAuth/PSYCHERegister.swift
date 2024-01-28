@@ -167,6 +167,7 @@ struct PSYCHERegister: View {
                                     .frame(width: geometry.size.width * 0.12, height: geometry.size.height * 0.12)
                                     .shadow(color: .gray, radius: geometry.size.width * 0.01)
                                     .foregroundColor(.white)
+                                    .background(Color(hex: 0x1D2951))
                             }
                             Spacer()
                         }
@@ -204,7 +205,7 @@ struct PSYCHERegister: View {
                                         .shadow(color: .gray, radius: geometry.size.width * 0.004)
                                     }
                                 }
-                                .background(selectedImage !== nil ? Color(hex: 0x4E7FD5) : Color.clear)
+                                .background(selectedImage !== nil ? Color(hex: 0x4E7FD5) : Color(hex: 0x1D2951))
                                 .overlay(
                                     RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
                                         .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
