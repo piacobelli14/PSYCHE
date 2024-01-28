@@ -15,7 +15,7 @@ struct PSYCHENewDev: View {
     @State private var devType: String = ""
     @State private var devID: String = ""
     
-    let types = ["", "Fitbit Sense"]
+    let types = ["Fitbit Sense"]
     
     @State private var errorMessage = ""
     
@@ -23,6 +23,8 @@ struct PSYCHENewDev: View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [Color(hex: 0x1D2951), Color(hex: 0x1D2951)]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
+            
+            AnimatedStarsView()
             
             VStack {
                 GeometryReader { geometry in
@@ -46,6 +48,7 @@ struct PSYCHENewDev: View {
                             .padding(.leading, geometry.size.height * 0.035)
                         }
                     }
+                    .background(Color(hex: 0x1D2951))
                     
                     VStack(alignment: .center) {
                         Spacer()
@@ -65,27 +68,33 @@ struct PSYCHENewDev: View {
                                     
                                     HStack {
                                         Spacer()
-                                        Picker("Select New Device Type", selection: $devType) {
+                                        Menu {
                                             ForEach(types, id: \.self) { type in
-                                                Text(type).tag(type)
+                                                Button(type) {
+                                                    devType = type
+                                                }
                                             }
+                                        } label: {
+                                            Text(devType == "" ? "Select Device Type" : devType)
+                                                .multilineTextAlignment(.center).foregroundColor(.black)
+                                                .padding(.horizontal, geometry.size.width * 0.15)
+                                                .padding(.vertical, geometry.size.width * 0.02)
+                                                .font(.system(size: geometry.size.height * 0.014, weight: .light))
+                                                .multilineTextAlignment(.center)
+                                                .background(Color(hex: 0xF6FCFE))
+                                                .border(Color(hex: 0xDFE6E9), width: geometry.size.width * 0.003)
+                                                .cornerRadius(geometry.size.width * 0.01)
+                                                .overlay(
+                                                    RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
+                                                        .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
+                                                )
+                                                .shadow(color: .gray, radius: geometry.size.width * 0.004)
                                         }
-                                        .pickerStyle(MenuPickerStyle())
-                                        .padding(geometry.size.height * 0.014)
-                                        .frame(width: geometry.size.width * 0.3)
-                                        .font(.system(size: geometry.size.height * 0.014, weight: .light))
-                                        .background(Color(hex: 0xF6FCFE))
-                                        .border(Color(hex: 0xDFE6E9), width: geometry.size.width * 0.003)
-                                        .cornerRadius(geometry.size.width * 0.01)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
-                                                .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
-                                        )
-                                        .shadow(color: .gray, radius: geometry.size.width * 0.004)
                                         .accentColor(.black)
                                         Spacer()
                                     }
                                 }
+                                .background(Color(hex: 0x1D2951))
                                 
                                 VStack(alignment: .center) {
                                     HStack {
@@ -99,7 +108,7 @@ struct PSYCHENewDev: View {
                                     
                                     HStack {
                                         Spacer()
-                                        TextField("New Device ID", text: $devID)
+                                        TextField("", text: $devID)
                                             .disableAutocorrection(true)
                                             .foregroundColor(.black)
                                             .font(.system(size: geometry.size.height * 0.014, weight: .light, design: .default))
@@ -125,10 +134,9 @@ struct PSYCHENewDev: View {
                                 }
                                 .frame(width: geometry.size.width * 0.6)
                                 .padding(.top, geometry.size.height * 0.04)
-                                
+                                .background(Color(hex: 0x1D2951))
                                 
                                 VStack {
-                                    
                                     HStack {
                                         VStack(alignment: .trailing) {
                                             Text(devType != "" ? "Device Type: " : "")
@@ -188,6 +196,7 @@ struct PSYCHENewDev: View {
                                     }
                                 }
                                 .padding(.top, geometry.size.height * 0.1)
+                                .background(Color(hex: 0x1D2951))
                                 
                                 HStack {
                                     Button(action: {
@@ -206,6 +215,7 @@ struct PSYCHENewDev: View {
                                     }
                                 }
                                 .padding(.top, geometry.size.height * 0.005)
+                                .background(Color(hex: 0x1D2951))
                                 
                                 if let errorMessage = errorMessage {
                                     Text(errorMessage)

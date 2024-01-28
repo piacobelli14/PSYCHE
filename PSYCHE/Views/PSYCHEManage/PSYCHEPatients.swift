@@ -38,6 +38,8 @@ struct PSYCHEPatients: View {
             LinearGradient(gradient: Gradient(colors: [Color(hex: 0x1D2951), Color(hex: 0x1D2951)]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
 
+            AnimatedStarsView()
+            
             VStack {
                 GeometryReader { geometry in
                     
@@ -46,7 +48,7 @@ struct PSYCHEPatients: View {
                             Button(action: {
                                 currentView = .Login
                             }) {
-                                Image(systemName: "arrow.left")
+                                Image(systemName: "lock")
                                     .foregroundColor(.black)
                                     .font(.system(size: geometry.size.height * 0.015))
                             }
@@ -93,7 +95,7 @@ struct PSYCHEPatients: View {
                                         TextField("", text: $patientSearch)
                                             .disableAutocorrection(true)
                                             .foregroundColor(.black)
-                                            .font(.system(size: geometry.size.height * 0.01, weight: .light, design: .default))
+                                            .font(.system(size: geometry.size.height * 0.016, weight: .light, design: .default))
                                             .padding(.leading, geometry.size.width * 0.06)
                                             .padding(geometry.size.height * 0.01)
                                             .background(Color(hex: 0xF6FCFE))

@@ -66,28 +66,30 @@ struct PSYCHERemoveDev: View {
                                     
                                     HStack {
                                         Spacer()
-                                        Picker("", selection: $selectedDevID) {
+                                        Menu {
                                             ForEach(devIDs, id: \.self) { id in
-                                                Text(id).tag(id)
+                                                Button(id) {
+                                                    selectedDevID = id
+                                                    self.updateSelectedDeviceType()
+                                                }
                                             }
+                                        } label: {
+                                            Text(selectedDevID == "" ? "Select A Device" : selectedDevID)
+                                                .foregroundColor(.black)
+                                                .padding(.horizontal, geometry.size.width * 0.15)
+                                                .padding(.vertical, geometry.size.width * 0.02)
+                                                .font(.system(size: geometry.size.height * 0.014, weight: .light))
+                                                .multilineTextAlignment(.center)
+                                                .background(Color(hex: 0xF6FCFE))
+                                                .border(Color(hex: 0xDFE6E9), width: geometry.size.width * 0.003)
+                                                .cornerRadius(geometry.size.width * 0.01)
+                                                .overlay(
+                                                    RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
+                                                        .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
+                                                )
+                                                .shadow(color: .gray, radius: geometry.size.width * 0.004)
+                                                
                                         }
-                                        .id(devIDs)
-                                        .pickerStyle(MenuPickerStyle())
-                                        .onChange(of: selectedDevID) { _ in
-                                            self.updateSelectedDeviceType()
-                                        }
-                                        .pickerStyle(MenuPickerStyle())
-                                        .padding(geometry.size.height * 0.014)
-                                        .frame(width: geometry.size.width * 0.5)
-                                        .font(.system(size: geometry.size.height * 0.014, weight: .light))
-                                        .background(Color(hex: 0xF6FCFE))
-                                        .border(Color(hex: 0xDFE6E9), width: geometry.size.width * 0.003)
-                                        .cornerRadius(geometry.size.width * 0.01)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
-                                                .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
-                                        )
-                                        .shadow(color: .gray, radius: geometry.size.width * 0.004)
                                         .accentColor(.black)
                                         Spacer()
                                     }
@@ -255,7 +257,7 @@ struct PSYCHERemoveDev: View {
                     let decodedData = try JSONDecoder().decode([WatchData].self, from: data)
                     DispatchQueue.main.async {
                         self.watchDataList = decodedData
-                        self.devIDs = [""] + decodedData.map { $0.devID }
+                        self.devIDs = decodedData.map { $0.devID }
                         print(devIDs)
                     }
                 } catch {

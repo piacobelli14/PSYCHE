@@ -38,6 +38,8 @@ struct PSYCHEEdit: View {
             LinearGradient(gradient: Gradient(colors: [Color(hex: 0x1D2951), Color(hex: 0x1D2951)]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
             
+            AnimatedStarsView()
+            
             VStack {
                 GeometryReader { geometry in
                     HStack {
@@ -58,9 +60,9 @@ struct PSYCHEEdit: View {
                         .padding(.top, geometry.size.height * 0.03)
                         .padding(.leading, geometry.size.height * 0.035)
                     }
+                    .background(Color(hex: 0x1D2951))
                     
                     VStack(alignment: .center) {
-                        
                         HStack {
                             Spacer()
                             VStack {
@@ -81,6 +83,7 @@ struct PSYCHEEdit: View {
                                     Spacer()
                                 }
                                 .foregroundColor(Color.white)
+                                .background(Color(hex: 0x1D2951))
                                 
                                 VStack {
                                     HStack(spacing: geometry.size.width * 0.02) {
@@ -162,27 +165,31 @@ struct PSYCHEEdit: View {
                                             
                                             HStack {
                                                 Spacer()
-                                                Picker("", selection: $selectedUnitEdit) {
+                                                Menu {
                                                     ForEach(units, id: \.self) { unit in
-                                                        Text(unit).tag(unit) // Display options excluding the empty string
-                                                    }
+                                                        Button(unit) {
+                                                            selectedUnitEdit = unit
+                                                        }
+                                                    }                                                } label: {
+                                                    Text(selectedUnitEdit.isEmpty ? "" : selectedUnitEdit)
+                                                        .foregroundColor(.black)
+                                                        .frame(width: geometry.size.width * 0.2)
+                                                        .font(.system(size: geometry.size.height * 0.016, weight: .light, design: .default))
+                                                        .multilineTextAlignment(.center)
+                                                        .padding(geometry.size.height * 0.016)
+                                                        .background(Color(hex: 0xF6FCFE))
+                                                        .border(Color(hex: 0xDFE6E9), width: geometry.size.width * 0.003)
+                                                        .cornerRadius(geometry.size.width * 0.01)
+                                                        .overlay(
+                                                            RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
+                                                                .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
+                                                        )
+                                                        .shadow(color: .gray, radius: geometry.size.width * 0.004)
                                                 }
-                                                .pickerStyle(MenuPickerStyle())
-                                                .padding(geometry.size.height * 0.014)
-                                                .frame(width: geometry.size.width * 0.3)
-                                                .font(.system(size: geometry.size.height * 0.014, weight: .light))
-                                                .background(Color(hex: 0xF6FCFE))
-                                                .border(Color(hex: 0xDFE6E9), width: geometry.size.width * 0.003)
-                                                .cornerRadius(geometry.size.width * 0.01)
-                                                .overlay(
-                                                    RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
-                                                        .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
-                                                )
-                                                .shadow(color: .gray, radius: geometry.size.width * 0.004)
-                                                .accentColor(.black)
                                                 Spacer()
                                             }
                                         }
+                                        .background(Color(hex: 0x1D2951))
                                         
                                         Spacer()
                                         
@@ -198,28 +205,32 @@ struct PSYCHEEdit: View {
                                             
                                             HStack {
                                                 Spacer()
-                                                Picker("", selection: $selectedSexEdit) {
-                                                    ForEach(0..<["Male", "Female"].count, id: \.self) { index in
-                                                        Text("\(["Male", "Female"][index])")
-                                                            .tag(["Male", "Female"][index])
+                                                Menu {
+                                                    ForEach(["Male", "Female"], id: \.self) { sex in
+                                                        Button(sex) {
+                                                            selectedSexEdit = sex
+                                                        }
                                                     }
+                                                } label: {
+                                                    Text(selectedSexEdit.isEmpty ? "" : selectedSexEdit)
+                                                        .foregroundColor(.black)
+                                                        .frame(width: geometry.size.width * 0.2)
+                                                        .font(.system(size: geometry.size.height * 0.016, weight: .light, design: .default))
+                                                        .multilineTextAlignment(.center)
+                                                        .padding(geometry.size.height * 0.016)
+                                                        .background(Color(hex: 0xF6FCFE))
+                                                        .border(Color(hex: 0xDFE6E9), width: geometry.size.width * 0.003)
+                                                        .cornerRadius(geometry.size.width * 0.01)
+                                                        .overlay(
+                                                            RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
+                                                                .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
+                                                        )
+                                                        .shadow(color: .gray, radius: geometry.size.width * 0.004)
                                                 }
-                                                .pickerStyle(MenuPickerStyle())
-                                                .padding(geometry.size.height * 0.014)
-                                                .frame(width: geometry.size.width * 0.3)
-                                                .font(.system(size: geometry.size.height * 0.014, weight: .light))
-                                                .background(Color(hex: 0xF6FCFE))
-                                                .border(Color(hex: 0xDFE6E9), width: geometry.size.width * 0.003)
-                                                .cornerRadius(geometry.size.width * 0.01)
-                                                .overlay(
-                                                    RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
-                                                        .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
-                                                )
-                                                .shadow(color: .gray, radius: geometry.size.width * 0.004)
-                                                .accentColor(.black)
                                                 Spacer()
                                             }
                                         }
+                                        .background(Color(hex: 0x1D2951))
                                         
                                         Spacer()
                                         
@@ -235,28 +246,32 @@ struct PSYCHEEdit: View {
                                             
                                             HStack {
                                                 Spacer()
-                                                Picker("", selection: $selectedAgeEdit) {
-                                                    ForEach(0..<ages.count, id: \.self) { index in
-                                                        Text("\(ages[index])")
-                                                            .tag(ages[index])
+                                                Menu {
+                                                    ForEach(ages, id: \.self) { age in
+                                                        Button(age) {
+                                                            selectedAgeEdit = age
+                                                        }
                                                     }
+                                                } label: {
+                                                    Text(selectedAgeEdit.isEmpty ? "" : selectedAgeEdit)
+                                                        .foregroundColor(.black)
+                                                        .frame(width: geometry.size.width * 0.2)
+                                                        .font(.system(size: geometry.size.height * 0.016, weight: .light, design: .default))
+                                                        .multilineTextAlignment(.center)
+                                                        .padding(geometry.size.height * 0.016)
+                                                        .background(Color(hex: 0xF6FCFE))
+                                                        .border(Color(hex: 0xDFE6E9), width: geometry.size.width * 0.003)
+                                                        .cornerRadius(geometry.size.width * 0.01)
+                                                        .overlay(
+                                                            RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
+                                                                .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
+                                                        )
+                                                        .shadow(color: .gray, radius: geometry.size.width * 0.004)
                                                 }
-                                                .pickerStyle(MenuPickerStyle())
-                                                .padding(geometry.size.height * 0.014)
-                                                .frame(width: geometry.size.width * 0.1)
-                                                .font(.system(size: geometry.size.height * 0.014, weight: .light))
-                                                .background(Color(hex: 0xF6FCFE))
-                                                .border(Color(hex: 0xDFE6E9), width: geometry.size.width * 0.003)
-                                                .cornerRadius(geometry.size.width * 0.01)
-                                                .overlay(
-                                                    RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
-                                                        .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
-                                                )
-                                                .shadow(color: .gray, radius: geometry.size.width * 0.004)
-                                                .accentColor(.black)
                                                 Spacer()
                                             }
                                         }
+                                        .background(Color(hex: 0x1D2951))
                                     }
                                     .frame(width: geometry.size.width * 0.8)
                                     .padding(.top, geometry.size.height * 0.04)
@@ -300,6 +315,7 @@ struct PSYCHEEdit: View {
                                                 .multilineTextAlignment(.center)
                                                 .frame(width: geometry.size.width * 0.6)
                                         }
+                                        .background(Color(hex: 0x1D2951))
                                     }
                                     .frame(width: geometry.size.width * 0.8)
                                     .padding(.top, geometry.size.height * 0.04)
@@ -321,6 +337,7 @@ struct PSYCHEEdit: View {
                                         }
                                     }
                                     .padding(.top, geometry.size.height * 0.12)
+                                    .background(Color(hex: 0x1D2951))
                                     
                                     HStack {
                                         Button(action: {
@@ -339,6 +356,7 @@ struct PSYCHEEdit: View {
                                         }
                                     }
                                     .padding(.top, geometry.size.height * 0.005)
+                                    .background(Color(hex: 0x1D2951))
                                     
                                     if let errorMessage = errorMessage {
                                         Text(errorMessage)

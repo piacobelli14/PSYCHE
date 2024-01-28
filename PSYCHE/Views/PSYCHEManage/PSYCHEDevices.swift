@@ -76,7 +76,7 @@ struct PSYCHEDevices: View {
                             Button(action: {
                                 currentView = .Login
                             }) {
-                                Image(systemName: "arrow.left")
+                                Image(systemName: "lock")
                                     .foregroundColor(.black)
                                     .font(.system(size: geometry.size.height * 0.015))
                             }

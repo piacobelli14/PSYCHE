@@ -98,23 +98,23 @@ struct PSYCHEExport: View {
                                             .padding(.vertical, 5)
                                         }
                                     }
-                                } label: {
-                                    Text(selectedSession.isEmpty ? "Select Session" : selectedSession)
-                                        .foregroundColor(.black)
-                                        .frame(width: geometry.size.width * 0.6)
-                                        .font(.system(size: geometry.size.height * 0.016, weight: .light, design: .default))
-                                        .multilineTextAlignment(.center)
-                                        .padding(geometry.size.height * 0.016)
-                                        .background(Color(hex: 0xF6FCFE))
-                                        .border(Color(hex: 0xDFE6E9), width: geometry.size.width * 0.003)
-                                        .cornerRadius(geometry.size.width * 0.01)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
-                                                .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
-                                        )
-                                        .shadow(color: .gray, radius: geometry.size.width * 0.004)
-                                }
-                                .frame(width: geometry.size.width * 0.6)
+                            } label: {
+                                Text(selectedSession.isEmpty ? "Select Session" : selectedSession)
+                                    .foregroundColor(.black)
+                                    .frame(width: geometry.size.width * 0.6)
+                                    .font(.system(size: geometry.size.height * 0.016, weight: .light, design: .default))
+                                    .multilineTextAlignment(.center)
+                                    .padding(geometry.size.height * 0.016)
+                                    .background(Color(hex: 0xF6FCFE))
+                                    .border(Color(hex: 0xDFE6E9), width: geometry.size.width * 0.003)
+                                    .cornerRadius(geometry.size.width * 0.01)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
+                                            .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
+                                    )
+                                    .shadow(color: .gray, radius: geometry.size.width * 0.004)
+                            }
+                            .frame(width: geometry.size.width * 0.6)
                             Spacer()
                         }
                         .padding(.top, geometry.size.height * 0.12)

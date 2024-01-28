@@ -33,6 +33,8 @@ struct PSYCHESwap: View {
             LinearGradient(gradient: Gradient(colors: [Color(hex: 0x1D2951), Color(hex: 0x1D2951)]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
             
+            AnimatedStarsView()
+            
             VStack {
                 GeometryReader { geometry in
                     HStack {
@@ -133,7 +135,7 @@ struct PSYCHESwap: View {
                                 VStack(alignment: .center) {
                                     HStack {
                                         Spacer()
-                                        Text("Selecte Device To Remove")
+                                        Text("Selected Device To Remove")
                                             .font(.system(size: geometry.size.height * 0.016, weight: .semibold, design: .default))
                                             .foregroundColor(.white)
                                             .shadow(color: .gray, radius: geometry.size.width * 0.0004)
@@ -142,29 +144,35 @@ struct PSYCHESwap: View {
                                     
                                     HStack {
                                         Spacer()
-                                        Picker("", selection: $newDevID) {
+                                        Menu {
                                             ForEach(availableDevIDs, id: \.self) { id in
-                                                Text(id).tag(id)
+                                                Button(id) {
+                                                    newDevID = id
+                                                    self.updateSelectedDeviceType()
+                                                }
                                             }
+                                        } label: {
+                                            HStack {
+                                                Text(newDevID)
+                                                    .foregroundColor(.black)
+                                                    .padding(.horizontal, geometry.size.width * 0.15)
+                                                    .padding(.vertical, geometry.size.width * 0.02)
+                                                    .font(.system(size: geometry.size.height * 0.014, weight: .light))
+                                                    .background(Color(hex: 0xF6FCFE))
+                                                    .border(Color(hex: 0xDFE6E9), width: geometry.size.width * 0.003)
+                                                    .cornerRadius(geometry.size.width * 0.01)
+                                                    .overlay(
+                                                        RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
+                                                            .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
+                                                    )
+                                                    .shadow(color: .gray, radius: geometry.size.width * 0.004)
+                                            }
+                                            .padding(.horizontal)
                                         }
-                                        .id(availableDevIDs)
-                                        .pickerStyle(MenuPickerStyle())
-                                        .onChange(of: newDevID) { newValue in
-                                            updateSelectedDeviceType()
-                                        }
-                                        .pickerStyle(MenuPickerStyle())
-                                        .padding(geometry.size.height * 0.014)
-                                        .frame(width: geometry.size.width * 0.5)
-                                        .font(.system(size: geometry.size.height * 0.014, weight: .light))
-                                        .background(Color(hex: 0xF6FCFE))
-                                        .border(Color(hex: 0xDFE6E9), width: geometry.size.width * 0.003)
-                                        .cornerRadius(geometry.size.width * 0.01)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
-                                                .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
-                                        )
-                                        .shadow(color: .gray, radius: geometry.size.width * 0.004)
+                                        .frame(width: geometry.size.width * 0.5, height: geometry.size.height * 0.05)
                                         .accentColor(.black)
+                                                    
+                                        
                                         Spacer()
                                     }
                                 }
@@ -326,7 +334,7 @@ struct PSYCHESwap: View {
                     DispatchQueue.main.async {
                         let filteredData = decodedData.filter { $0.assignedTo == "None" || $0.assignedTo.isEmpty }
                         self.watchDataList = filteredData
-                        self.availableDevIDs = [""] + filteredData.map { $0.devID }
+                        self.availableDevIDs = filteredData.map { $0.devID }
                         print(availableDevIDs)
                     }
                 } catch {

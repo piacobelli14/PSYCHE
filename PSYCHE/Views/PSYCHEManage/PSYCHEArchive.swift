@@ -30,7 +30,8 @@ struct PSYCHEArchive: View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [Color(hex: 0x1D2951), Color(hex: 0x1D2951)]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
-   
+            
+            AnimatedStarsView()
             
             VStack {
                 GeometryReader { geometry in
@@ -75,6 +76,7 @@ struct PSYCHEArchive: View {
                                     Spacer()
                                 }
                                 .foregroundColor(Color.white)
+                                .background(Color(hex: 0x1D2951))
                                 
                                 VStack {
                                     HStack {
@@ -87,8 +89,9 @@ struct PSYCHEArchive: View {
                                         
                                         Spacer()
                                     }
-                                    .frame(width: geometry.size.width * 0.8)
-                                    .padding(.top, geometry.size.height * 0.2)
+                                    .frame(width: geometry.size.width * 0.7)
+                                    .padding(.top, geometry.size.height * 0.12)
+                                    .background(Color(hex: 0x1D2951))
                                     
                                     HStack {
                                         Image(systemName: validationCheck ? "checkmark.square.fill" : "square")
@@ -107,7 +110,8 @@ struct PSYCHEArchive: View {
                                             .multilineTextAlignment(.leading)
                                     }
                                     .padding(.top, geometry.size.height * 0.025)
-                                    .frame(width: geometry.size.width * 0.6)
+                                    .frame(width: geometry.size.width * 0.5)
+                                    .background(Color(hex: 0x1D2951))
                                     
                                     HStack {
                                         Button(action: {
@@ -129,7 +133,8 @@ struct PSYCHEArchive: View {
                                             .shadow(color: .gray, radius: geometry.size.width * 0.004)
                                         }
                                     }
-                                    .padding(.top, geometry.size.height * 0.2)
+                                    .padding(.top, geometry.size.height * 0.12)
+                                    .background(Color(hex: 0x1D2951))
                                     
                                     HStack {
                                         Button(action: {
@@ -148,11 +153,13 @@ struct PSYCHEArchive: View {
                                         }
                                     }
                                     .padding(.top, geometry.size.height * 0.005)
+                                    .background(Color(hex: 0x1D2951))
                                     
                                     if let errorMessage = errorMessage {
                                         Text(errorMessage)
                                             .foregroundColor(.red)
                                             .font(.system(size: geometry.size.height * 0.012))
+                                            .background(Color(hex: 0x1D2951))
                                             .padding(.top, geometry.size.height * 0.02)
                                     }
                                 }

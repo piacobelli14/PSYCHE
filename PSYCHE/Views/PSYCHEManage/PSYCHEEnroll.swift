@@ -15,8 +15,8 @@ struct PSYCHEEnroll: View {
     @State private var ptLastName: String = ""
     @State private var ptID: String = ""
     @State private var isMale = true
-    let ages = [""] + (Array(0...100)).map { String($0) }
-    private let units = ["", "ATP", "ATP-STS", "Compass", "CPAS", "Adult Program", "Bridge"]
+    let ages = (Array(0...100)).map { String($0) }
+    private let units = ["ATP", "ATP-STS", "Compass", "CPAS", "Adult Program", "Bridge"]
     @State private var selectedUnit: String = ""
     @State private var selectedAge: String = ""
     @State private var selectedSex: String = ""
@@ -28,6 +28,8 @@ struct PSYCHEEnroll: View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [Color(hex: 0x1D2951), Color(hex: 0x1D2951)]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
+            
+            AnimatedStarsView()
             
             VStack {
                 GeometryReader { geometry in
@@ -72,6 +74,7 @@ struct PSYCHEEnroll: View {
                                     Spacer()
                                 }
                                 .foregroundColor(Color.white)
+                                .background(Color(hex: 0x1D2951))
                                 
                                 VStack {
                                     HStack(spacing: geometry.size.width * 0.02) {
@@ -79,7 +82,7 @@ struct PSYCHEEnroll: View {
                                             HStack {
                                                 Spacer()
                                                 Text("First Name")
-                                                    .font(.system(size: geometry.size.height * 0.016, weight: .semibold, design: .default))
+                                                    .font(.system(size: geometry.size.height * 0.02, weight: .semibold, design: .default))
                                                     .foregroundColor(.white)
                                                     .shadow(color: .gray, radius: geometry.size.width * 0.0004)
                                                 Spacer()
@@ -90,7 +93,7 @@ struct PSYCHEEnroll: View {
                                                 TextField("", text: $ptFirstName)
                                                     .disableAutocorrection(true)
                                                     .foregroundColor(.black)
-                                                    .font(.system(size: geometry.size.height * 0.014, weight: .light, design: .default))
+                                                    .font(.system(size: geometry.size.height * 0.016, weight: .light, design: .default))
                                                     .multilineTextAlignment(.center)
                                                     .padding(geometry.size.height * 0.014)
                                                     .background(Color(hex: 0xF6FCFE))
@@ -104,6 +107,7 @@ struct PSYCHEEnroll: View {
                                                 Spacer()
                                             }
                                         }
+                                        .background(Color(hex: 0x1D2951))
                                         
                                         Spacer()
                                         
@@ -111,7 +115,7 @@ struct PSYCHEEnroll: View {
                                             HStack {
                                                 Spacer()
                                                 Text("Last Name")
-                                                    .font(.system(size: geometry.size.height * 0.016, weight: .semibold, design: .default))
+                                                    .font(.system(size: geometry.size.height * 0.02, weight: .semibold, design: .default))
                                                     .foregroundColor(.white)
                                                     .shadow(color: .gray, radius: geometry.size.width * 0.0004)
                                                 Spacer()
@@ -122,7 +126,7 @@ struct PSYCHEEnroll: View {
                                                 TextField("", text: $ptLastName)
                                                     .disableAutocorrection(true)
                                                     .foregroundColor(.black)
-                                                    .font(.system(size: geometry.size.height * 0.014, weight: .light, design: .default))
+                                                    .font(.system(size: geometry.size.height * 0.016, weight: .light, design: .default))
                                                     .multilineTextAlignment(.center)
                                                     .padding(geometry.size.height * 0.014)
                                                     .background(Color(hex: 0xF6FCFE))
@@ -136,13 +140,11 @@ struct PSYCHEEnroll: View {
                                                 Spacer()
                                             }
                                         }
+                                        .background(Color(hex: 0x1D2951))
                                     }
                                     .frame(width: geometry.size.width * 0.8)
                                     .padding(.top, geometry.size.height * 0.08)
                                     
-                                    HStack(spacing: geometry.size.width * 0.02) {
-                                        
-                                    }
                                     
                                     HStack(spacing: geometry.size.width * 0.02) {
                                         VStack(alignment: .center) {
@@ -157,27 +159,32 @@ struct PSYCHEEnroll: View {
                                             
                                             HStack {
                                                 Spacer()
-                                                Picker("Select Unit", selection: $selectedUnit) {
+                                                Menu {
                                                     ForEach(units, id: \.self) { unit in
-                                                        Text(unit).tag(unit) // Display options excluding the empty string
+                                                        Button(unit) {
+                                                            selectedUnit = unit
+                                                        }
                                                     }
+                                                } label: {
+                                                    Text(selectedUnit.isEmpty ? "" : selectedUnit)
+                                                        .foregroundColor(.black)
+                                                        .frame(width: geometry.size.width * 0.2)
+                                                        .font(.system(size: geometry.size.height * 0.016, weight: .light, design: .default))
+                                                        .multilineTextAlignment(.center)
+                                                        .padding(geometry.size.height * 0.016)
+                                                        .background(Color(hex: 0xF6FCFE))
+                                                        .border(Color(hex: 0xDFE6E9), width: geometry.size.width * 0.003)
+                                                        .cornerRadius(geometry.size.width * 0.01)
+                                                        .overlay(
+                                                            RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
+                                                                .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
+                                                        )
+                                                        .shadow(color: .gray, radius: geometry.size.width * 0.004)
                                                 }
-                                                .pickerStyle(MenuPickerStyle())
-                                                .padding(geometry.size.height * 0.014)
-                                                .frame(width: geometry.size.width * 0.3)
-                                                .font(.system(size: geometry.size.height * 0.014, weight: .light))
-                                                .background(Color(hex: 0xF6FCFE))
-                                                .border(Color(hex: 0xDFE6E9), width: geometry.size.width * 0.003)
-                                                .cornerRadius(geometry.size.width * 0.01)
-                                                .overlay(
-                                                    RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
-                                                        .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
-                                                )
-                                                .shadow(color: .gray, radius: geometry.size.width * 0.004)
-                                                .accentColor(.black)
                                                 Spacer()
                                             }
                                         }
+                                        .background(Color(hex: 0x1D2951))
                                         
                                         Spacer()
                                         
@@ -193,28 +200,32 @@ struct PSYCHEEnroll: View {
                                             
                                             HStack {
                                                 Spacer()
-                                                Picker("", selection: $selectedSex) {
-                                                    ForEach(0..<["Male", "Female", ""].count, id: \.self) { index in
-                                                        Text("\(["Male", "Female", ""][index])")
-                                                            .tag(["Male", "Female", ""][index])
+                                                Menu {
+                                                    ForEach(["Male", "Female"], id: \.self) { sex in
+                                                        Button(sex) {
+                                                            selectedSex = sex
+                                                        }
                                                     }
+                                                } label: {
+                                                    Text(selectedSex.isEmpty ? "" : selectedSex)
+                                                        .foregroundColor(.black)
+                                                        .frame(width: geometry.size.width * 0.2)
+                                                        .font(.system(size: geometry.size.height * 0.016, weight: .light, design: .default))
+                                                        .multilineTextAlignment(.center)
+                                                        .padding(geometry.size.height * 0.016)
+                                                        .background(Color(hex: 0xF6FCFE))
+                                                        .border(Color(hex: 0xDFE6E9), width: geometry.size.width * 0.003)
+                                                        .cornerRadius(geometry.size.width * 0.01)
+                                                        .overlay(
+                                                            RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
+                                                                .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
+                                                        )
+                                                        .shadow(color: .gray, radius: geometry.size.width * 0.004)
                                                 }
-                                                .pickerStyle(MenuPickerStyle())
-                                                .padding(geometry.size.height * 0.014)
-                                                .frame(width: geometry.size.width * 0.3)
-                                                .font(.system(size: geometry.size.height * 0.014, weight: .light))
-                                                .background(Color(hex: 0xF6FCFE))
-                                                .border(Color(hex: 0xDFE6E9), width: geometry.size.width * 0.003)
-                                                .cornerRadius(geometry.size.width * 0.01)
-                                                .overlay(
-                                                    RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
-                                                        .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
-                                                )
-                                                .shadow(color: .gray, radius: geometry.size.width * 0.004)
-                                                .accentColor(.black)
                                                 Spacer()
                                             }
                                         }
+                                        .background(Color(hex: 0x1D2951))
                                         
                                         Spacer()
                                         
@@ -230,28 +241,31 @@ struct PSYCHEEnroll: View {
                                             
                                             HStack {
                                                 Spacer()
-                                                Picker("", selection: $selectedAge) {
-                                                    ForEach(0..<ages.count, id: \.self) { index in
-                                                        Text("\(ages[index])")
-                                                            .tag(ages[index])
+                                                Menu {
+                                                    ForEach(ages, id: \.self) { age in
+                                                        Button(age) {
+                                                            selectedAge = age
+                                                        }
                                                     }
+                                                } label: {
+                                                    Text(selectedAge.isEmpty ? "" : selectedAge)
+                                                        .foregroundColor(.black)
+                                                        .frame(width: geometry.size.width * 0.2)
+                                                        .font(.system(size: geometry.size.height * 0.016, weight: .light, design: .default))
+                                                        .multilineTextAlignment(.center)
+                                                        .padding(geometry.size.height * 0.016)
+                                                        .background(Color(hex: 0xF6FCFE))
+                                                        .border(Color(hex: 0xDFE6E9), width: geometry.size.width * 0.003)
+                                                        .cornerRadius(geometry.size.width * 0.01)
+                                                        .overlay(
+                                                            RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
+                                                                .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
+                                                        )
                                                 }
-                                                .pickerStyle(MenuPickerStyle())
-                                                .padding(geometry.size.height * 0.014)
-                                                .frame(width: geometry.size.width * 0.1)
-                                                .font(.system(size: geometry.size.height * 0.014, weight: .light))
-                                                .background(Color(hex: 0xF6FCFE))
-                                                .border(Color(hex: 0xDFE6E9), width: geometry.size.width * 0.003)
-                                                .cornerRadius(geometry.size.width * 0.01)
-                                                .overlay(
-                                                    RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
-                                                        .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
-                                                )
-                                                .shadow(color: .gray, radius: geometry.size.width * 0.004)
-                                                .accentColor(.black)
                                                 Spacer()
                                             }
                                         }
+                                        .background(Color(hex: 0x1D2951))
                                     }
                                     .frame(width: geometry.size.width * 0.8)
                                     .padding(.top, geometry.size.height * 0.04)
@@ -293,6 +307,7 @@ struct PSYCHEEnroll: View {
                                                 .multilineTextAlignment(.center)
                                                 .frame(width: geometry.size.width * 0.6)
                                         }
+                                        .background(Color(hex: 0x1D2951))
                                     }
                                     .frame(width: geometry.size.width * 0.8)
                                     .padding(.top, geometry.size.height * 0.04)
@@ -314,6 +329,7 @@ struct PSYCHEEnroll: View {
                                         }
                                     }
                                     .padding(.top, geometry.size.height * 0.12)
+                                    .background(Color(hex: 0x1D2951))
                                     
                                     HStack {
                                         Button(action: {
@@ -332,6 +348,7 @@ struct PSYCHEEnroll: View {
                                         }
                                     }
                                     .padding(.top, geometry.size.height * 0.005)
+                                    .background(Color(hex: 0x1D2951))
                                     
                                     if let errorMessage = errorMessage {
                                         Text(errorMessage)
