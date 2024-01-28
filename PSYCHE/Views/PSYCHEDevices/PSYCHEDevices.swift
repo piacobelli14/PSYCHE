@@ -77,13 +77,16 @@ struct PSYCHEDevices: View {
                                 currentView = .Login
                             }) {
                                 Image(systemName: "lock")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: geometry.size.width * 0.015)
+                                    .frame(height: geometry.size.height * 0.015)
                                     .foregroundColor(.black)
-                                    .font(.system(size: geometry.size.height * 0.015))
                             }
                             .background(
                                 Circle()
                                     .fill(Color.white)
-                                    .frame(width: geometry.size.width * 0.04, height: geometry.size.height * 0.04)
+                                    .frame(width: geometry.size.width * 0.05, height: geometry.size.height * 0.05)
                                     .shadow(color: Color(hex: 0x4E7FD5), radius: 5, x: 0, y: 0)
                                     .opacity(0.9)
                             )
@@ -95,13 +98,16 @@ struct PSYCHEDevices: View {
                                 currentView = .Patients
                             }) {
                                 Image(systemName: "person.2")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: geometry.size.width * 0.015)
+                                    .frame(height: geometry.size.height * 0.015)
                                     .foregroundColor(.black)
-                                    .font(.system(size: geometry.size.height * 0.015))
                             }
                             .background(
                                 Circle()
                                     .fill(Color.white)
-                                    .frame(width: geometry.size.width * 0.04, height: geometry.size.height * 0.04)
+                                    .frame(width: geometry.size.width * 0.05, height: geometry.size.height * 0.05)
                                     .shadow(color: Color(hex: 0x4E7FD5), radius: 5, x: 0, y: 0)
                                     .opacity(0.9)
                             )
@@ -113,13 +119,16 @@ struct PSYCHEDevices: View {
                                 currentView = .Export
                             }) {
                                 Image(systemName: "doc.text")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: geometry.size.width * 0.015)
+                                    .frame(height: geometry.size.height * 0.015)
                                     .foregroundColor(.black)
-                                    .font(.system(size: geometry.size.height * 0.015))
                             }
                             .background(
                                 Circle()
                                     .fill(Color.white)
-                                    .frame(width: geometry.size.width * 0.04, height: geometry.size.height * 0.04)
+                                    .frame(width: geometry.size.width * 0.05, height: geometry.size.height * 0.05)
                                     .shadow(color: Color(hex: 0x4E7FD5), radius: 5, x: 0, y: 0)
                                     .opacity(0.9)
                             )
@@ -134,14 +143,17 @@ struct PSYCHEDevices: View {
                             Button(action: {
                                 currentView = .NewDev
                             }) {
-                                Image(systemName: "plus")
+                                Image(systemName: "applewatch.watchface")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: geometry.size.width * 0.015)
+                                    .frame(height: geometry.size.height * 0.015)
                                     .foregroundColor(.black)
-                                    .font(.system(size: geometry.size.height * 0.015))
                             }
                             .background(
                                 Circle()
                                     .fill(Color.white)
-                                    .frame(width: geometry.size.width * 0.04, height: geometry.size.height * 0.04)
+                                    .frame(width: geometry.size.width * 0.05, height: geometry.size.height * 0.05)
                                     .shadow(color: Color(hex: 0x4E7FD5), radius: 5, x: 0, y: 0)
                                     .opacity(0.9)
                             )
@@ -152,23 +164,25 @@ struct PSYCHEDevices: View {
                             Button(action: {
                                 currentView = .RemoveDev
                             }) {
-                                Image(systemName: "minus")
+                                Image(systemName: "applewatch.slash")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: geometry.size.width * 0.015)
+                                    .frame(height: geometry.size.height * 0.015)
                                     .foregroundColor(.black)
-                                    .font(.system(size: geometry.size.height * 0.015))
                             }
                             .background(
                                 Circle()
                                     .fill(Color.white)
-                                    .frame(width: geometry.size.width * 0.04, height: geometry.size.height * 0.04)
+                                    .frame(width: geometry.size.width * 0.05, height: geometry.size.height * 0.05)
                                     .shadow(color: Color(hex: 0x4E7FD5), radius: 5, x: 0, y: 0)
                                     .opacity(0.9)
                             )
                             .padding(.top, geometry.size.height * 0.03)
-                            .padding(.leading, geometry.size.width * 0.015)
                             
                         }
                         .padding(.trailing, geometry.size.height * 0.035)
-                        .frame(width: geometry.size.width * 0.15)
+                        .frame(width: geometry.size.width * 0.14)
                     }
                     
                  
@@ -244,7 +258,7 @@ struct PSYCHEDevices: View {
                     }
                     .frame(width: geometry.size.width * 0.3)
                     .padding(.vertical, geometry.size.height * 0.01)
-                    .background(device.assignedTo != "None" ? Color(hex: 0x5BBA6F).opacity(0.2) : Color(hex: 0xBD9B19).opacity(0.2))
+                    .background(device.assignedTo != "None" ? Color(hex: 0x5BBA6F).opacity(0.1) : Color(hex: 0xBD9B19).opacity(0.1))
                     .foregroundColor(device.assignedTo != "None" ? Color(hex: 0x6BC17D).opacity(1) : Color(hex: 0xBD9B19))
                     .overlay(
                         RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
@@ -253,7 +267,7 @@ struct PSYCHEDevices: View {
                     
                     let batteryStatusText = Int(device.battery) ?? 0 < 20 ? "Not Charged: " : "Charged: "
                     let batteryStatusPrimaryColor = Int(device.battery) ?? 0 < 20 ? Color(hex: 0xE54B4B).opacity(1) : Color(hex: 0x6BC17D).opacity(1)
-                    let batteryStatusSecondaryColor = Int(device.battery) ?? 0 < 20 ? Color(hex: 0xE54B4B).opacity(0.2) : Color(hex: 0x5BBA6F).opacity(0.2)
+                    let batteryStatusSecondaryColor = Int(device.battery) ?? 0 < 20 ? Color(hex: 0xE54B4B).opacity(0.1) : Color(hex: 0x5BBA6F).opacity(0.1)
                     HStack {
                         Spacer()
                         Text(batteryStatusText)
