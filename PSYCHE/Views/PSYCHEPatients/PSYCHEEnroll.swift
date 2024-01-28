@@ -149,7 +149,7 @@ struct PSYCHEEnroll: View {
                                     .padding(.top, geometry.size.height * 0.08)
                                     
                                     
-                                    HStack(spacing: geometry.size.width * 0.02) {
+                                    HStack {
                                         VStack(alignment: .center) {
                                             HStack {
                                                 Spacer()
@@ -157,6 +157,7 @@ struct PSYCHEEnroll: View {
                                                     .font(.system(size: geometry.size.height * 0.016, weight: .semibold, design: .default))
                                                     .foregroundColor(.white)
                                                     .shadow(color: .gray, radius: geometry.size.width * 0.0004)
+                                                    .frame(width: geometry.size.width * 0.2)
                                                 Spacer()
                                             }
                                             
@@ -198,6 +199,7 @@ struct PSYCHEEnroll: View {
                                                     .font(.system(size: geometry.size.height * 0.016, weight: .semibold, design: .default))
                                                     .foregroundColor(.white)
                                                     .shadow(color: .gray, radius: geometry.size.width * 0.0004)
+                                                    .frame(width: geometry.size.width * 0.2)
                                                 Spacer()
                                             }
                                             
@@ -239,6 +241,7 @@ struct PSYCHEEnroll: View {
                                                     .font(.system(size: geometry.size.height * 0.016, weight: .semibold, design: .default))
                                                     .foregroundColor(.white)
                                                     .shadow(color: .gray, radius: geometry.size.width * 0.0004)
+                                                    .frame(width: geometry.size.width * 0.2)
                                                 Spacer()
                                             }
                                             
