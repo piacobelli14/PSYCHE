@@ -44,19 +44,21 @@ struct PSYCHEExport: View {
             
             VStack {
                 GeometryReader { geometry in
-                    
                     HStack {
                         Button(action: {
-                            currentView = .Devices
+                            currentView = .Patients
                         }) {
                             Image(systemName: "arrow.left")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: geometry.size.width * 0.01)
+                                .frame(height: geometry.size.height * 0.01)
                                 .foregroundColor(.black)
-                                .font(.system(size: geometry.size.height * 0.015))
                         }
                         .background(
                             Circle()
                                 .fill(Color.white)
-                                .frame(width: geometry.size.width * 0.04, height: geometry.size.height * 0.04)
+                                .frame(width: geometry.size.width * 0.05, height: geometry.size.height * 0.05)
                                 .shadow(color: Color(hex: 0x4E7FD5), radius: 5, x: 0, y: 0)
                                 .opacity(0.9)
                         )
@@ -78,6 +80,7 @@ struct PSYCHEExport: View {
                             Text("Download a Session")
                                 .font(.system(size: geometry.size.height * 0.025, weight: .heavy))
                                 .multilineTextAlignment(.center)
+                                .background(Color(hex: 0x1D2951))
                       
                             Spacer()
                         }
@@ -148,6 +151,7 @@ struct PSYCHEExport: View {
                                 .opacity(0.9)
                                 .padding(.leading, geometry.size.width * 0.02)
                                 .multilineTextAlignment(.leading)
+                                .background(Color(hex: 0x1D2951))
                         }
                         .padding(.top, geometry.size.height * 0.01)
                         .frame(width: geometry.size.width * 0.6)
@@ -183,9 +187,9 @@ struct PSYCHEExport: View {
                                         .underline(true)
                                 }
                                 .frame(width: geometry.size.width * 0.5)
-                                .background(Color.clear)
                                 .cornerRadius(geometry.size.width * 0.01)
                                 .shadow(color: .gray, radius: geometry.size.width * 0.004)
+                                .background(Color(hex: 0x1D2951))
                             }
                         }
                         .padding(.top, geometry.size.height * 0.005)
@@ -195,6 +199,7 @@ struct PSYCHEExport: View {
                                 .foregroundColor(.red)
                                 .font(.system(size: geometry.size.height * 0.012))
                                 .padding(.top, geometry.size.height * 0.02)
+                                .background(Color(hex: 0x1D2951))
                         }
                        Spacer()
                     }
