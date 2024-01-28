@@ -129,8 +129,7 @@ struct PSYCHESwap: View {
                                     Text("\(ptName) is not currently assigned a device. Choose an available device below to get them started!")
                                         .font(.system(size: geometry.size.height * 0.016, weight: .semibold))
                                         .foregroundColor(Color.white)
-                                        .multilineTextAlignment(.center)
-                                        .padding(.top, geometry.size.height * 0.04)
+                                        .padding(.top, geometry.size.height * 0.12)
                                         .frame(width: geometry.size.width * 0.7)
                                         .background(Color(hex: 0x1D2951))
                                 }
@@ -215,12 +214,11 @@ struct PSYCHESwap: View {
                                         .shadow(color: .gray, radius: geometry.size.width * 0.004)
                                     }
                                 }
-                                .padding(.top, geometry.size.height * 0.04)
-                                .background(Color(hex: 0x1D2951))
+                                .padding(.top, newDevID == "" ? geometry.size.height * 0.04 : geometry.size.height * 0.12)
                                 
                                 HStack {
                                     Button(action: {
-                                        self.currentView = .Devices
+                                        self.currentView = .Patients
                                     }) {
                                         HStack {
                                             Text("Cancel Removal")
@@ -235,7 +233,6 @@ struct PSYCHESwap: View {
                                     }
                                 }
                                 .padding(.top, geometry.size.height * 0.005)
-                                .background(Color(hex: 0x1D2951))
                                 
                                 if let errorMessage = errorMessage {
                                     Text(errorMessage)

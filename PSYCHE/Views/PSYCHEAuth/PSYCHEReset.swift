@@ -27,7 +27,7 @@ struct newPasswordEntryDynamicStyle: ViewModifier {
         content
             .disableAutocorrection(true)
             .foregroundColor(.black)
-            .font(.system(size: geometry.size.height * 0.016, weight: .light, design: .default))
+            .font(.system(size: geometry.size.height * 0.02, weight: .light, design: .default))
             .multilineTextAlignment(.center)
             .padding(geometry.size.height * 0.016)
             .background(Color(hex: 0xF6FCFE))
@@ -69,11 +69,10 @@ struct PSYCHEReset: View {
     
     var body: some View {
         ZStack {
-            AnimatedStarsView()
+            LinearGradient(gradient: Gradient(colors: [Color(hex: 0x1D2951), Color(hex: 0x1D2951)]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
-                .background(
-                    LinearGradient(gradient: Gradient(colors: [Color(hex: 0x1D2951), Color(hex: 0x093571)]), startPoint: .top, endPoint: .bottom)
-                )
+            
+            AnimatedStarsView()
             
             VStack {
                 GeometryReader { geometry in
@@ -82,13 +81,16 @@ struct PSYCHEReset: View {
                             currentView = .Login
                         }) {
                             Image(systemName: "arrow.left")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: geometry.size.width * 0.01)
+                                .frame(height: geometry.size.height * 0.01)
                                 .foregroundColor(.black)
-                                .font(.system(size: geometry.size.height * 0.015))
                         }
                         .background(
                             Circle()
                                 .fill(Color.white)
-                                .frame(width: geometry.size.width * 0.04, height: geometry.size.height * 0.04)
+                                .frame(width: geometry.size.width * 0.05, height: geometry.size.height * 0.05)
                                 .shadow(color: Color(hex: 0x4E7FD5), radius: 5, x: 0, y: 0)
                         )
                         .padding(.top, geometry.size.height * 0.03)
@@ -111,10 +113,10 @@ struct PSYCHEReset: View {
                             
                             HStack {
                                 Spacer()
-                                TextField("Email", text: $email)
+                                TextField("", text: $email)
                                     .disableAutocorrection(true)
                                     .foregroundColor(.black)
-                                    .font(.system(size: geometry.size.height * 0.016, weight: .light, design: .default))
+                                    .font(.system(size: geometry.size.height * 0.02, weight: .light, design: .default))
                                     .padding(geometry.size.height * 0.016)
                                     .background(Color(hex: 0xF6FCFE))
                                     .border(Color(hex: 0xDFE6E9), width: geometry.size.width * 0.003)
@@ -132,6 +134,7 @@ struct PSYCHEReset: View {
                                 Spacer()
                             }
                             .frame(width: geometry.size.width * 0.7)
+                            .background(Color(hex: 0x1D2951))
                             
                             HStack {
                                 Spacer()
@@ -144,6 +147,7 @@ struct PSYCHEReset: View {
                                 Spacer()
                             }
                             .frame(width: geometry.size.width * 0.8)
+                            .background(Color(hex: 0x1D2951))
                             
                             HStack {
                                 Spacer()
@@ -165,6 +169,7 @@ struct PSYCHEReset: View {
                                     .cornerRadius(geometry.size.width * 0.01)
                                     .shadow(color: .gray, radius: geometry.size.width * 0.004)
                                 }
+                                .background(Color(hex: 0x1D2951))
                                 Spacer()
                             }
                         } else {
@@ -179,13 +184,14 @@ struct PSYCHEReset: View {
                                                 .shadow(color: .gray, radius: geometry.size.width * 0.0004)
                                             Spacer()
                                         }
+                                        .background(Color(hex: 0x1D2951))
                                         
                                         HStack {
                                             Spacer()
                                             TextField("", text: $enteredResetCode)
                                                 .disableAutocorrection(true)
                                                 .foregroundColor(.black)
-                                                .font(.system(size: geometry.size.height * 0.016, weight: .light, design: .default))
+                                                .font(.system(size: geometry.size.height * 0.02, weight: .light, design: .default))
                                                 .multilineTextAlignment(.center)
                                                 .padding(geometry.size.height * 0.016)
                                                 .background(Color(hex: 0xF6FCFE))
@@ -221,6 +227,7 @@ struct PSYCHEReset: View {
                                             Spacer()
                                         }
                                         .frame(width: geometry.size.width * 0.6)
+                                        .background(Color(hex: 0x1D2951))
                                     }
                                 }
                                 .frame(width: geometry.size.width * 1)
@@ -236,6 +243,7 @@ struct PSYCHEReset: View {
                                             .font(.system(size: geometry.size.height * 0.015, weight: .semibold, design: .default))
                                             .padding(.top, geometry.size.height * 0.02)
                                             .padding(.bottom, geometry.size.height * 0.015)
+                                            .background(Color(hex: 0x1D2951))
                                         Spacer()
                                     }
                                     .frame(width: geometry.size.width * 0.8)
@@ -251,15 +259,16 @@ struct PSYCHEReset: View {
                                                 .shadow(color: .gray, radius: geometry.size.width * 0.0004)
                                             Spacer()
                                         }
+                                        .background(Color(hex: 0x1D2951))
                                         
                                         HStack {
                                             Spacer()
                                             ZStack {
                                                 if isNewPasswordVisible {
-                                                    TextField("New Password", text: $newPassword)
+                                                    TextField("", text: $newPassword)
                                                         .modifier(newPasswordEntryDynamicStyle(geometry: geometry))
                                                 } else {
-                                                    SecureField("New Password", text: $newPassword)
+                                                    SecureField("", text: $newPassword)
                                                         .modifier(newPasswordEntryDynamicStyle(geometry: geometry))
                                                 }
                                                 HStack {
@@ -268,14 +277,18 @@ struct PSYCHEReset: View {
                                                         isNewPasswordVisible.toggle()
                                                     }) {
                                                         Image(systemName: isNewPasswordVisible ? "eye.slash" : "eye")
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fill)
+                                                            .frame(width: geometry.size.width * 0.016)
+                                                            .frame(height: geometry.size.height * 0.016)
                                                             .foregroundColor(Color(hex: 0x828B8E))
-                                                            .font(.system(size: geometry.size.height * 0.02))
                                                     }
                                                     .padding(.trailing, geometry.size.width * 0.03)
                                                 }
                                             }
                                             Spacer()
                                         }
+                                        .background(Color(hex: 0x1D2951))
                                     }
                                     .frame(width: geometry.size.width * 0.6)
                                     
@@ -286,6 +299,7 @@ struct PSYCHEReset: View {
                                                 .font(.system(size: geometry.size.height * 0.02, weight: .semibold, design: .default))
                                                 .foregroundColor(.white)
                                                 .shadow(color: .gray, radius: geometry.size.width * 0.0004)
+                                                .background(Color(hex: 0x1D2951))
                                             Spacer()
                                         }
                                         
@@ -293,10 +307,10 @@ struct PSYCHEReset: View {
                                             Spacer()
                                             ZStack {
                                                 if isConfirmPasswordVisible {
-                                                    TextField("Confirm Password", text: $confirmPassword)
+                                                    TextField("", text: $confirmPassword)
                                                         .modifier(newPasswordEntryDynamicStyle(geometry: geometry))
                                                 } else {
-                                                    SecureField("Confirm Password", text: $confirmPassword)
+                                                    SecureField("", text: $confirmPassword)
                                                         .modifier(newPasswordEntryDynamicStyle(geometry: geometry))
                                                 }
                                                 HStack {
@@ -305,14 +319,18 @@ struct PSYCHEReset: View {
                                                         isConfirmPasswordVisible.toggle()
                                                     }) {
                                                         Image(systemName: isConfirmPasswordVisible ? "eye.slash" : "eye")
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fill)
+                                                            .frame(width: geometry.size.width * 0.016)
+                                                            .frame(height: geometry.size.height * 0.016)
                                                             .foregroundColor(Color(hex: 0x828B8E))
-                                                            .font(.system(size: geometry.size.height * 0.02))
                                                     }
                                                     .padding(.trailing, geometry.size.width * 0.03)
                                                 }
                                             }
                                             Spacer()
                                         }
+                                        .background(Color(hex: 0x1D2951))
                                     }
                                     .frame(width: geometry.size.width * 0.6)
                                     .padding(.top, geometry.size.height * 0.02)
@@ -328,6 +346,7 @@ struct PSYCHEReset: View {
                                         .font(.system(size: geometry.size.height * 0.015, weight: .semibold, design: .default))
                                         .padding(.top, geometry.size.height * 0.02)
                                         .padding(.bottom, geometry.size.height * 0.015)
+                                        .background(Color(hex: 0x1D2951))
                                     Spacer()
                                 }
                                 .frame(width: geometry.size.width * 0.6)
@@ -347,6 +366,7 @@ struct PSYCHEReset: View {
                                                     .foregroundColor(Color(hex: 0xF5F5F5))
                                             }
                                             .modifier(resetPasswordDynamicStyle(geometry: geometry))
+                                            .background(Color(hex: 0x1D2951))
                                         } else {
                                             HStack {
                                                 Text(passwordResetText)
@@ -358,6 +378,7 @@ struct PSYCHEReset: View {
                                                     .font(.system(size: geometry.size.height * 0.016))
                                             }
                                             .modifier(resetPasswordDynamicStyle(geometry: geometry))
+                                            .background(Color(hex: 0x1D2951))
                                         }
                                     }
                                 }

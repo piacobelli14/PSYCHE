@@ -15,7 +15,7 @@ struct createPasswordDynamicStyle: ViewModifier {
         content
             .disableAutocorrection(true)
             .foregroundColor(.black)
-            .font(.system(size: geometry.size.height * 0.014, weight: .light, design: .default))
+            .font(.system(size: geometry.size.height * 0.018, weight: .light, design: .default))
             .multilineTextAlignment(.center)
             .padding(geometry.size.height * 0.014)
             .background(Color(hex: 0xF6FCFE))
@@ -26,6 +26,7 @@ struct createPasswordDynamicStyle: ViewModifier {
                     .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
             )
             .shadow(color: .gray, radius: geometry.size.width * 0.004)
+            .frame(width: geometry.size.width * 0.4)
     }
 }
 
@@ -119,11 +120,10 @@ struct PSYCHERegister: View {
     var body: some View {
         ZStack {
             
-            AnimatedStarsView()
+            LinearGradient(gradient: Gradient(colors: [Color(hex: 0x1D2951), Color(hex: 0x1D2951)]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
-                .background(
-                    LinearGradient(gradient: Gradient(colors: [Color(hex: 0x1D2951), Color(hex: 0x093571)]), startPoint: .top, endPoint: .bottom)
-                )
+            
+            AnimatedStarsView()
             
             VStack {
                 GeometryReader { geometry in
@@ -133,13 +133,16 @@ struct PSYCHERegister: View {
                             currentView = .Login
                         }) {
                             Image(systemName: "arrow.left")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: geometry.size.width * 0.01)
+                                .frame(height: geometry.size.height * 0.01)
                                 .foregroundColor(.black)
-                                .font(.system(size: geometry.size.height * 0.015))
                         }
                         .background(
                             Circle()
                                 .fill(Color.white)
-                                .frame(width: geometry.size.width * 0.04, height: geometry.size.height * 0.04)
+                                .frame(width: geometry.size.width * 0.05, height: geometry.size.height * 0.05)
                                 .shadow(color: Color(hex: 0x4E7FD5), radius: 5, x: 0, y: 0)
                         )
                         .padding(.top, geometry.size.height * 0.03)
@@ -167,7 +170,7 @@ struct PSYCHERegister: View {
                             }
                             Spacer()
                         }
-                        .padding(.top, geometry.size.height * 0.05)
+                        .padding(.top, geometry.size.height * 0.08)
 
                         HStack {
                             Spacer()
@@ -229,10 +232,10 @@ struct PSYCHERegister: View {
                                         
                                         HStack {
                                             Spacer()
-                                            TextField("First Name", text: $firstName)
+                                            TextField("", text: $firstName)
                                                 .disableAutocorrection(true)
                                                 .foregroundColor(.black)
-                                                .font(.system(size: geometry.size.height * 0.014, weight: .light, design: .default))
+                                                .font(.system(size: geometry.size.height * 0.018, weight: .light, design: .default))
                                                 .multilineTextAlignment(.center)
                                                 .padding(geometry.size.height * 0.014)
                                                 .background(Color(hex: 0xF6FCFE))
@@ -243,11 +246,11 @@ struct PSYCHERegister: View {
                                                         .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
                                                 )
                                                 .shadow(color: .gray, radius: geometry.size.width * 0.004)
+                                                .frame(width: geometry.size.width * 0.4)
                                             Spacer()
                                         }
                                     }
-                                    
-                                    Spacer()
+                                    .background(Color(hex: 0x1D2951))
                                     
                                     VStack(alignment: .center) {
                                         HStack {
@@ -261,10 +264,10 @@ struct PSYCHERegister: View {
                                         
                                         HStack {
                                             Spacer()
-                                            TextField("Last Name", text: $lastName)
+                                            TextField("", text: $lastName)
                                                 .disableAutocorrection(true)
                                                 .foregroundColor(.black)
-                                                .font(.system(size: geometry.size.height * 0.014, weight: .light, design: .default))
+                                                .font(.system(size: geometry.size.height * 0.018, weight: .light, design: .default))
                                                 .multilineTextAlignment(.center)
                                                 .padding(geometry.size.height * 0.014)
                                                 .background(Color(hex: 0xF6FCFE))
@@ -275,12 +278,14 @@ struct PSYCHERegister: View {
                                                         .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
                                                 )
                                                 .shadow(color: .gray, radius: geometry.size.width * 0.004)
+                                                .frame(width: geometry.size.width * 0.4)
                                             Spacer()
                                         }
                                     }
+                                    .background(Color(hex: 0x1D2951))
                                 }
                                 .frame(width: geometry.size.width * 0.8)
-                                .padding(.top, geometry.size.height * 0.1)
+                                .padding(.top, geometry.size.height * 0.08)
                                 
                                 HStack(spacing: geometry.size.width * 0.02) {
                                     VStack(alignment: .center) {
@@ -295,10 +300,10 @@ struct PSYCHERegister: View {
                                         
                                         HStack {
                                             Spacer()
-                                            TextField("Email", text: $email)
+                                            TextField("", text: $email)
                                                 .disableAutocorrection(true)
                                                 .foregroundColor(.black)
-                                                .font(.system(size: geometry.size.height * 0.014, weight: .light, design: .default))
+                                                .font(.system(size: geometry.size.height * 0.018, weight: .light, design: .default))
                                                 .multilineTextAlignment(.center)
                                                 .padding(geometry.size.height * 0.014)
                                                 .background(Color(hex: 0xF6FCFE))
@@ -309,11 +314,11 @@ struct PSYCHERegister: View {
                                                         .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
                                                 )
                                                 .shadow(color: .gray, radius: geometry.size.width * 0.004)
+                                                .frame(width: geometry.size.width * 0.4)
                                             Spacer()
                                         }
                                     }
-                                    
-                                    Spacer()
+                                    .background(Color(hex: 0x1D2951))
                                     
                                     VStack(alignment: .center) {
                                         HStack {
@@ -327,10 +332,10 @@ struct PSYCHERegister: View {
                                         
                                         HStack {
                                             Spacer()
-                                            TextField("Username", text: $username)
+                                            TextField("", text: $username)
                                                 .disableAutocorrection(true)
                                                 .foregroundColor(.black)
-                                                .font(.system(size: geometry.size.height * 0.014, weight: .light, design: .default))
+                                                .font(.system(size: geometry.size.height * 0.018, weight: .light, design: .default))
                                                 .multilineTextAlignment(.center)
                                                 .padding(geometry.size.height * 0.014)
                                                 .background(Color(hex: 0xF6FCFE))
@@ -341,9 +346,11 @@ struct PSYCHERegister: View {
                                                         .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
                                                 )
                                                 .shadow(color: .gray, radius: geometry.size.width * 0.004)
+                                                .frame(width: geometry.size.width * 0.4)
                                             Spacer()
                                         }
                                     }
+                                    .background(Color(hex: 0x1D2951))
                                 }
                                 .frame(width: geometry.size.width * 0.8)
                                 .padding(.top, geometry.size.height * 0.04)
@@ -363,10 +370,10 @@ struct PSYCHERegister: View {
                                             Spacer()
                                             ZStack {
                                                 if isNewPasswordVisible {
-                                                    TextField("New Password", text: $newPassword)
+                                                    TextField("", text: $newPassword)
                                                         .modifier(createPasswordDynamicStyle(geometry: geometry))
                                                 } else {
-                                                    SecureField("New Password", text: $newPassword)
+                                                    SecureField("", text: $newPassword)
                                                         .modifier(createPasswordDynamicStyle(geometry: geometry))
                                                 }
                                                 HStack {
@@ -375,8 +382,11 @@ struct PSYCHERegister: View {
                                                         isNewPasswordVisible.toggle()
                                                     }) {
                                                         Image(systemName: isNewPasswordVisible ? "eye.slash" : "eye")
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fill)
+                                                            .frame(width: geometry.size.width * 0.016)
+                                                            .frame(height: geometry.size.height * 0.016)
                                                             .foregroundColor(Color(hex: 0x828B8E))
-                                                            .font(.system(size: geometry.size.height * 0.012))
                                                     }
                                                     .padding(.trailing, geometry.size.width * 0.03)
                                                 }
@@ -384,8 +394,7 @@ struct PSYCHERegister: View {
                                             Spacer()
                                         }
                                     }
-                                    
-                                    Spacer()
+                                    .background(Color(hex: 0x1D2951))
                                     
                                     VStack(alignment: .center) {
                                         HStack {
@@ -401,10 +410,10 @@ struct PSYCHERegister: View {
                                             Spacer()
                                             ZStack {
                                                 if isConfirmPasswordVisible {
-                                                    TextField("Confirm Password", text: $confirmPassword)
+                                                    TextField("", text: $confirmPassword)
                                                         .modifier(createPasswordDynamicStyle(geometry: geometry))
                                                 } else {
-                                                    SecureField("Confirm Password", text: $confirmPassword)
+                                                    SecureField("", text: $confirmPassword)
                                                         .modifier(createPasswordDynamicStyle(geometry: geometry))
                                                 }
                                                 HStack {
@@ -413,8 +422,11 @@ struct PSYCHERegister: View {
                                                         isConfirmPasswordVisible.toggle()
                                                     }) {
                                                         Image(systemName: isConfirmPasswordVisible ? "eye.slash" : "eye")
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fill)
+                                                            .frame(width: geometry.size.width * 0.016)
+                                                            .frame(height: geometry.size.height * 0.016)
                                                             .foregroundColor(Color(hex: 0x828B8E))
-                                                            .font(.system(size: geometry.size.height * 0.012))
                                                     }
                                                     .padding(.trailing, geometry.size.width * 0.03)
                                                 }
@@ -422,6 +434,7 @@ struct PSYCHERegister: View {
                                             Spacer()
                                         }
                                     }
+                                    .background(Color(hex: 0x1D2951))
                                 }
                                 .frame(width: geometry.size.width * 0.8)
                                 .padding(.top, geometry.size.height * 0.04)
@@ -442,7 +455,8 @@ struct PSYCHERegister: View {
                                         .shadow(color: .gray, radius: geometry.size.width * 0.004)
                                     }
                                 }
-                                .padding(.top, geometry.size.height * 0.1)
+                                .padding(.top, geometry.size.height * 0.08)
+                                .background(Color(hex: 0x1D2951))
                                 
                                 if let errorMessage = errorMessage {
                                     Text(errorMessage)

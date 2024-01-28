@@ -124,17 +124,18 @@ struct PSYCHENewDev: View {
                                             .shadow(color: .gray, radius: geometry.size.width * 0.004)
                                         Spacer()
                                     }
+                                    .background(Color(hex: 0x1D2951))
                                     
                                     Text("This is a unique value used to identify the device and control its distribution. Please make sure that it is enetered correctly. It can't be edited.")
                                         .font(.system(size: geometry.size.height * 0.01, weight: .regular))
                                         .foregroundColor(Color.white)
                                         .multilineTextAlignment(.center)
                                         .frame(width: geometry.size.width * 0.6)
+                                        .background(Color(hex: 0x1D2951))
                                     
                                 }
                                 .frame(width: geometry.size.width * 0.6)
                                 .padding(.top, geometry.size.height * 0.04)
-                                .background(Color(hex: 0x1D2951))
                                 
                                 VStack {
                                     HStack {

@@ -16,7 +16,7 @@ struct passwordInputDynamicStyle: ViewModifier {
         content
             .disableAutocorrection(true)
             .foregroundColor(.black)
-            .font(.system(size: geometry.size.height * 0.016, weight: .light, design: .default))
+            .font(.system(size: geometry.size.height * 0.02, weight: .light, design: .default))
             .multilineTextAlignment(.center)
             .padding(geometry.size.height * 0.016)
             .background(Color(hex: 0xF6FCFE))
@@ -130,10 +130,10 @@ struct PSYCHELogin: View {
                             
                             HStack {
                                 Spacer()
-                                TextField("Username", text: $username)
+                                TextField("", text: $username)
                                     .disableAutocorrection(true)
                                     .foregroundColor(.black)
-                                    .font(.system(size: geometry.size.height * 0.016, weight: .light, design: .default))
+                                    .font(.system(size: geometry.size.height * 0.02, weight: .light, design: .default))
                                     .multilineTextAlignment(.center)
                                     .padding(geometry.size.height * 0.016)
                                     .background(Color(hex: 0xF6FCFE))
@@ -156,7 +156,7 @@ struct PSYCHELogin: View {
                                     },
                                     label: {
                                         Text("Create an account.")
-                                            .font(.system(size: geometry.size.height * 0.016, weight: .semibold, design: .default))
+                                            .font(.system(size: geometry.size.height * 0.014, weight: .semibold, design: .default))
                                             .foregroundColor(Color(hex: 0x4E7FD5))
                                             .underline(true)
                                             .shadow(color: .gray, radius: geometry.size.width * 0.0004)
@@ -181,10 +181,10 @@ struct PSYCHELogin: View {
                                 Spacer()
                                 ZStack {
                                     if isPasswordVisible {
-                                        TextField("Password", text: $password)
+                                        TextField("", text: $password)
                                             .modifier(passwordInputDynamicStyle(geometry: geometry))
                                     } else {
-                                        SecureField("Password", text: $password)
+                                        SecureField("", text: $password)
                                             .modifier(passwordInputDynamicStyle(geometry: geometry))
                                     }
                                     HStack {
@@ -193,8 +193,11 @@ struct PSYCHELogin: View {
                                             isPasswordVisible.toggle()
                                         }) {
                                             Image(systemName: isPasswordVisible ? "eye.slash" : "eye")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: geometry.size.width * 0.016)
+                                                .frame(height: geometry.size.height * 0.016)
                                                 .foregroundColor(Color(hex: 0x828B8E))
-                                                .font(.system(size: geometry.size.height * 0.016))
                                         }
                                         .padding(.trailing, geometry.size.width * 0.03)
                                     }
@@ -211,7 +214,7 @@ struct PSYCHELogin: View {
                                     },
                                     label: {
                                         Text("Forgot password?")
-                                            .font(.system(size: geometry.size.height * 0.016, weight: .semibold, design: .default))
+                                            .font(.system(size: geometry.size.height * 0.014, weight: .semibold, design: .default))
                                             .foregroundColor(Color(hex: 0x4E7FD5))
                                             .underline(true)
                                             .shadow(color: .gray, radius: geometry.size.width * 0.0004)

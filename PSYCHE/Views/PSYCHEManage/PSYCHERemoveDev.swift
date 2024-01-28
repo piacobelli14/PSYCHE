@@ -25,6 +25,8 @@ struct PSYCHERemoveDev: View {
             LinearGradient(gradient: Gradient(colors: [Color(hex: 0x1D2951), Color(hex: 0x1D2951)]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
             
+            AnimatedStarsView()
+            
             VStack {
                 GeometryReader { geometry in
                     HStack {
@@ -47,6 +49,7 @@ struct PSYCHERemoveDev: View {
                             .padding(.leading, geometry.size.height * 0.035)
                         }
                     }
+                    .background(Color(hex: 0x1D2951))
                     
                     VStack(alignment: .center) {
                         Spacer()
@@ -94,6 +97,7 @@ struct PSYCHERemoveDev: View {
                                         Spacer()
                                     }
                                 }
+                                .background(Color(hex: 0x1D2951))
                                 
                                 VStack {
                                     HStack {
@@ -156,6 +160,7 @@ struct PSYCHERemoveDev: View {
                                 }
                                 .padding(.top, geometry.size.height * 0.025)
                                 .frame(width: geometry.size.width * 0.5)
+                                .background(Color(hex: 0x1D2951))
                                 
                                 HStack {
                                     Button(action: {
@@ -174,6 +179,7 @@ struct PSYCHERemoveDev: View {
                                     }
                                 }
                                 .padding(.top, geometry.size.height * 0.08)
+                                .background(Color(hex: 0x1D2951))
                                 
                                 HStack {
                                     Button(action: {
@@ -192,6 +198,7 @@ struct PSYCHERemoveDev: View {
                                     }
                                 }
                                 .padding(.top, geometry.size.height * 0.005)
+                                .background(Color(hex: 0x1D2951))
                                 
                                 if let errorMessage = errorMessage {
                                     Text(errorMessage)
