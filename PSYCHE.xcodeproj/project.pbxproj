@@ -60,6 +60,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BE707FAF2B66D387001609B1 /* PSYCHEPatients */ = {
+			isa = PBXGroup;
+			children = (
+				BE86719F2B6178CB00810613 /* PSYCHESwap.swift */,
+				BE8671832B5DD81800810613 /* PSYCHEPatients.swift */,
+				BE8671892B5EFAB100810613 /* PSYCHEEdit.swift */,
+				BE8671852B5EFA8600810613 /* PSYCHEEnroll.swift */,
+				BE8671872B5EFA9B00810613 /* PSYCHEArchive.swift */,
+			);
+			path = PSYCHEPatients;
+			sourceTree = "<group>";
+		};
+		BE707FB02B66D3A7001609B1 /* PSYCHEDevices */ = {
+			isa = PBXGroup;
+			children = (
+				BE86719B2B6178AA00810613 /* PSYCHERemoveDev.swift */,
+				BE8671992B61789700810613 /* PSYCHENewDev.swift */,
+				BE86718B2B5EFAC200810613 /* PSYCHEDevices.swift */,
+			);
+			path = PSYCHEDevices;
+			sourceTree = "<group>";
+		};
 		BE8671562B5C338300810613 = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +132,8 @@
 		BE8671712B5C361A00810613 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BE707FB02B66D3A7001609B1 /* PSYCHEDevices */,
+				BE707FAF2B66D387001609B1 /* PSYCHEPatients */,
 				BE8671822B5DD75400810613 /* PSYCHEManage */,
 				BE8671772B5C36CD00810613 /* PSYCHEAuth */,
 			);
@@ -137,14 +161,6 @@
 			isa = PBXGroup;
 			children = (
 				BE8671A12B6579AB00810613 /* PSYCHEExport.swift */,
-				BE86719F2B6178CB00810613 /* PSYCHESwap.swift */,
-				BE86719B2B6178AA00810613 /* PSYCHERemoveDev.swift */,
-				BE8671992B61789700810613 /* PSYCHENewDev.swift */,
-				BE8671832B5DD81800810613 /* PSYCHEPatients.swift */,
-				BE86718B2B5EFAC200810613 /* PSYCHEDevices.swift */,
-				BE8671892B5EFAB100810613 /* PSYCHEEdit.swift */,
-				BE8671852B5EFA8600810613 /* PSYCHEEnroll.swift */,
-				BE8671872B5EFA9B00810613 /* PSYCHEArchive.swift */,
 			);
 			path = PSYCHEManage;
 			sourceTree = "<group>";
