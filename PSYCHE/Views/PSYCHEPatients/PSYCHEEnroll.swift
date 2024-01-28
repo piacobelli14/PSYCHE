@@ -38,13 +38,16 @@ struct PSYCHEEnroll: View {
                             currentView = .Patients
                         }) {
                             Image(systemName: "arrow.left")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: geometry.size.width * 0.01)
+                                .frame(height: geometry.size.height * 0.01)
                                 .foregroundColor(.black)
-                                .font(.system(size: geometry.size.height * 0.015))
                         }
                         .background(
                             Circle()
                                 .fill(Color.white)
-                                .frame(width: geometry.size.width * 0.04, height: geometry.size.height * 0.04)
+                                .frame(width: geometry.size.width * 0.05, height: geometry.size.height * 0.05)
                                 .shadow(color: Color(hex: 0x4E7FD5), radius: 5, x: 0, y: 0)
                                 .opacity(0.9)
                         )
@@ -93,7 +96,7 @@ struct PSYCHEEnroll: View {
                                                 TextField("", text: $ptFirstName)
                                                     .disableAutocorrection(true)
                                                     .foregroundColor(.black)
-                                                    .font(.system(size: geometry.size.height * 0.016, weight: .light, design: .default))
+                                                    .font(.system(size: geometry.size.height * 0.014, weight: .light, design: .default))
                                                     .multilineTextAlignment(.center)
                                                     .padding(geometry.size.height * 0.014)
                                                     .background(Color(hex: 0xF6FCFE))
@@ -126,7 +129,7 @@ struct PSYCHEEnroll: View {
                                                 TextField("", text: $ptLastName)
                                                     .disableAutocorrection(true)
                                                     .foregroundColor(.black)
-                                                    .font(.system(size: geometry.size.height * 0.016, weight: .light, design: .default))
+                                                    .font(.system(size: geometry.size.height * 0.014, weight: .light, design: .default))
                                                     .multilineTextAlignment(.center)
                                                     .padding(geometry.size.height * 0.014)
                                                     .background(Color(hex: 0xF6FCFE))
@@ -261,6 +264,7 @@ struct PSYCHEEnroll: View {
                                                             RoundedRectangle(cornerRadius: geometry.size.width * 0.01)
                                                                 .stroke(Color(hex: 0xDFE6E9), lineWidth: geometry.size.width * 0.004)
                                                         )
+                                                        .shadow(color: .gray, radius: geometry.size.width * 0.004)
                                                 }
                                                 Spacer()
                                             }
@@ -329,7 +333,6 @@ struct PSYCHEEnroll: View {
                                         }
                                     }
                                     .padding(.top, geometry.size.height * 0.12)
-                                    .background(Color(hex: 0x1D2951))
                                     
                                     HStack {
                                         Button(action: {
@@ -345,16 +348,17 @@ struct PSYCHEEnroll: View {
                                             .background(Color.clear)
                                             .cornerRadius(geometry.size.width * 0.01)
                                             .shadow(color: .gray, radius: geometry.size.width * 0.004)
+                                            .background(Color(hex: 0x1D2951))
                                         }
                                     }
                                     .padding(.top, geometry.size.height * 0.005)
-                                    .background(Color(hex: 0x1D2951))
                                     
                                     if let errorMessage = errorMessage {
                                         Text(errorMessage)
                                             .foregroundColor(.red)
                                             .font(.system(size: geometry.size.height * 0.012))
                                             .padding(.top, geometry.size.height * 0.02)
+                                            .background(Color(hex: 0x1D2951))
                                     }
                                 }
                                 Spacer()

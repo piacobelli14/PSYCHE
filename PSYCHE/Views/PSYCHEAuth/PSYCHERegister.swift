@@ -127,7 +127,6 @@ struct PSYCHERegister: View {
             
             VStack {
                 GeometryReader { geometry in
-                    
                     HStack {
                         Button(action: {
                             currentView = .Login
@@ -457,13 +456,13 @@ struct PSYCHERegister: View {
                                     }
                                 }
                                 .padding(.top, geometry.size.height * 0.08)
-                                .background(Color(hex: 0x1D2951))
                                 
                                 if let errorMessage = errorMessage {
                                     Text(errorMessage)
                                         .foregroundColor(.red)
                                         .font(.system(size: geometry.size.height * 0.012))
                                         .padding(.top, geometry.size.height * 0.02)
+                                        .background(Color(hex: 0x1D2951))
                                 }
                             }
                             

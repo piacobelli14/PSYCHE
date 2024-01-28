@@ -40,13 +40,16 @@ struct PSYCHEArchive: View {
                             currentView = .Patients
                         }) {
                             Image(systemName: "arrow.left")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: geometry.size.width * 0.01)
+                                .frame(height: geometry.size.height * 0.01)
                                 .foregroundColor(.black)
-                                .font(.system(size: geometry.size.height * 0.015))
                         }
                         .background(
                             Circle()
                                 .fill(Color.white)
-                                .frame(width: geometry.size.width * 0.04, height: geometry.size.height * 0.04)
+                                .frame(width: geometry.size.width * 0.05, height: geometry.size.height * 0.05)
                                 .shadow(color: Color(hex: 0x4E7FD5), radius: 5, x: 0, y: 0)
                                 .opacity(0.9)
                         )
@@ -85,19 +88,19 @@ struct PSYCHEArchive: View {
                                         Text("Are you sure that you want to archive patient \(ptFirstNameArchive) \(ptLastNameArchive) (ID: \(ptIDArchive))?")
                                             .font(.system(size: geometry.size.height * 0.02, weight: .semibold))
                                             .foregroundColor(Color.white)
+                                            .background(Color(hex: 0x1D2951))
                                             .multilineTextAlignment(.center)
-                                        
                                         Spacer()
                                     }
                                     .frame(width: geometry.size.width * 0.7)
                                     .padding(.top, geometry.size.height * 0.12)
-                                    .background(Color(hex: 0x1D2951))
                                     
                                     HStack {
                                         Image(systemName: validationCheck ? "checkmark.square.fill" : "square")
                                             .frame(width: geometry.size.width * 0.025)
-                                            .foregroundColor(.white) // Set the checkmark color to white
+                                            .foregroundColor(.white)
                                             .font(.system(size: geometry.size.height * 0.025))
+                                            .background(Color(hex: 0x1D2951))
                                             .onTapGesture {
                                                 validationCheck.toggle()
                                             }
@@ -108,10 +111,10 @@ struct PSYCHEArchive: View {
                                             .opacity(0.9)
                                             .padding(.leading, geometry.size.width * 0.02)
                                             .multilineTextAlignment(.leading)
+                                            .background(Color(hex: 0x1D2951))
                                     }
                                     .padding(.top, geometry.size.height * 0.025)
                                     .frame(width: geometry.size.width * 0.5)
-                                    .background(Color(hex: 0x1D2951))
                                     
                                     HStack {
                                         Button(action: {
@@ -134,7 +137,6 @@ struct PSYCHEArchive: View {
                                         }
                                     }
                                     .padding(.top, geometry.size.height * 0.12)
-                                    .background(Color(hex: 0x1D2951))
                                     
                                     HStack {
                                         Button(action: {
@@ -150,10 +152,10 @@ struct PSYCHEArchive: View {
                                             .background(Color.clear)
                                             .cornerRadius(geometry.size.width * 0.01)
                                             .shadow(color: .gray, radius: geometry.size.width * 0.004)
+                                            .background(Color(hex: 0x1D2951))
                                         }
                                     }
                                     .padding(.top, geometry.size.height * 0.005)
-                                    .background(Color(hex: 0x1D2951))
                                     
                                     if let errorMessage = errorMessage {
                                         Text(errorMessage)

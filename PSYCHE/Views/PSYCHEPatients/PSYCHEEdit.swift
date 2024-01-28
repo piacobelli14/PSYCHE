@@ -47,20 +47,22 @@ struct PSYCHEEdit: View {
                             currentView = .Patients
                         }) {
                             Image(systemName: "arrow.left")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: geometry.size.width * 0.01)
+                                .frame(height: geometry.size.height * 0.01)
                                 .foregroundColor(.black)
-                                .font(.system(size: geometry.size.height * 0.015))
                         }
                         .background(
                             Circle()
                                 .fill(Color.white)
-                                .frame(width: geometry.size.width * 0.04, height: geometry.size.height * 0.04)
+                                .frame(width: geometry.size.width * 0.05, height: geometry.size.height * 0.05)
                                 .shadow(color: Color(hex: 0x4E7FD5), radius: 5, x: 0, y: 0)
                                 .opacity(0.9)
                         )
                         .padding(.top, geometry.size.height * 0.03)
                         .padding(.leading, geometry.size.height * 0.035)
                     }
-                    .background(Color(hex: 0x1D2951))
                     
                     VStack(alignment: .center) {
                         HStack {
@@ -337,7 +339,6 @@ struct PSYCHEEdit: View {
                                         }
                                     }
                                     .padding(.top, geometry.size.height * 0.12)
-                                    .background(Color(hex: 0x1D2951))
                                     
                                     HStack {
                                         Button(action: {
@@ -353,16 +354,17 @@ struct PSYCHEEdit: View {
                                             .background(Color.clear)
                                             .cornerRadius(geometry.size.width * 0.01)
                                             .shadow(color: .gray, radius: geometry.size.width * 0.004)
+                                            .background(Color(hex: 0x1D2951))
                                         }
                                     }
                                     .padding(.top, geometry.size.height * 0.005)
-                                    .background(Color(hex: 0x1D2951))
                                     
                                     if let errorMessage = errorMessage {
                                         Text(errorMessage)
                                             .foregroundColor(.red)
                                             .font(.system(size: geometry.size.height * 0.012))
                                             .padding(.top, geometry.size.height * 0.02)
+                                            .background(Color(hex: 0x1D2951))
                                     }
                                 }
                                 Spacer()

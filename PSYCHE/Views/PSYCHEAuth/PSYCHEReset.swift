@@ -169,7 +169,6 @@ struct PSYCHEReset: View {
                                     .cornerRadius(geometry.size.width * 0.01)
                                     .shadow(color: .gray, radius: geometry.size.width * 0.004)
                                 }
-                                .background(Color(hex: 0x1D2951))
                                 Spacer()
                             }
                         } else {
@@ -288,7 +287,6 @@ struct PSYCHEReset: View {
                                             }
                                             Spacer()
                                         }
-                                        .background(Color(hex: 0x1D2951))
                                     }
                                     .frame(width: geometry.size.width * 0.6)
                                     
@@ -330,7 +328,6 @@ struct PSYCHEReset: View {
                                             }
                                             Spacer()
                                         }
-                                        .background(Color(hex: 0x1D2951))
                                     }
                                     .frame(width: geometry.size.width * 0.6)
                                     .padding(.top, geometry.size.height * 0.02)
@@ -366,7 +363,6 @@ struct PSYCHEReset: View {
                                                     .foregroundColor(Color(hex: 0xF5F5F5))
                                             }
                                             .modifier(resetPasswordDynamicStyle(geometry: geometry))
-                                            .background(Color(hex: 0x1D2951))
                                         } else {
                                             HStack {
                                                 Text(passwordResetText)
@@ -378,7 +374,6 @@ struct PSYCHEReset: View {
                                                     .font(.system(size: geometry.size.height * 0.016))
                                             }
                                             .modifier(resetPasswordDynamicStyle(geometry: geometry))
-                                            .background(Color(hex: 0x1D2951))
                                         }
                                     }
                                 }
