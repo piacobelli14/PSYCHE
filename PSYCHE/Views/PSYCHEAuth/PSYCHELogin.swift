@@ -62,6 +62,7 @@ struct PSYCHELogin: View {
     @State private var password: String = ""
     @State private var isLoginSuccessful = false
     @State private var isPasswordVisible = false
+    @State private var errorMessage: String? = nil
     
     var body: some View {
         ZStack {
@@ -253,6 +254,15 @@ struct PSYCHELogin: View {
                             }
                         }
                         .padding(.top, geometry.size.height * 0.1)
+                        
+                        
+                        if let errorMessage = errorMessage {
+                            Text(errorMessage)
+                                .foregroundColor(.red)
+                                .font(.system(size: geometry.size.height * 0.012))
+                                .padding(.top, geometry.size.height * 0.02)
+                                .background(Color.clear)
+                        }
                     }
                 }
             }
@@ -287,9 +297,10 @@ struct PSYCHELogin: View {
 
             if response.statusCode == 200 {
                 self.isLoginSuccessful = true
-                self.currentView = .Patients
+                self.currentView = .Devices
             } else {
                 self.isLoginSuccessful = false
+                self.errorMessage = "That username or password is incorrect."
             }
         }.resume()
     }
