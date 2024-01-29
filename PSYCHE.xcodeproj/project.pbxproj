@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE707FBA2B673737001609B1 /* Fitbit Sense Remodel.dae in Resources */ = {isa = PBXBuildFile; fileRef = BE707FB92B673737001609B1 /* Fitbit Sense Remodel.dae */; };
 		BE8671632B5C338300810613 /* PSYCHEApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8671622B5C338300810613 /* PSYCHEApp.swift */; };
 		BE8671652B5C338300810613 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8671642B5C338300810613 /* ContentView.swift */; };
 		BE8671672B5C338500810613 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE8671662B5C338500810613 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BE707FB92B673737001609B1 /* Fitbit Sense Remodel.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = "Fitbit Sense Remodel.dae"; sourceTree = "<group>"; };
 		BE86715F2B5C338300810613 /* PSYCHE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSYCHE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE8671622B5C338300810613 /* PSYCHEApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSYCHEApp.swift; sourceTree = "<group>"; };
 		BE8671642B5C338300810613 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				BE8671702B5C35F300810613 /* Managers */,
 				BE8671622B5C338300810613 /* PSYCHEApp.swift */,
 				BE8671642B5C338300810613 /* ContentView.swift */,
+				BE707FB92B673737001609B1 /* Fitbit Sense Remodel.dae */,
 				BE8671952B60230700810613 /* Fitbit Sense.dae */,
 				BE8671662B5C338500810613 /* Assets.xcassets */,
 				BE8671682B5C338500810613 /* Preview Content */,
@@ -226,6 +229,7 @@
 				BE8671962B60230700810613 /* Fitbit Sense.dae in Resources */,
 				BE86716A2B5C338500810613 /* Preview Assets.xcassets in Resources */,
 				BE8671672B5C338500810613 /* Assets.xcassets in Resources */,
+				BE707FBA2B673737001609B1 /* Fitbit Sense Remodel.dae in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
