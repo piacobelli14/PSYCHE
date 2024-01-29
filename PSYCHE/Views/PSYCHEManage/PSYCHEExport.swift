@@ -213,7 +213,7 @@ struct PSYCHEExport: View {
     }
     
     private func getDeviceInfo() {
-        let url = URL(string: "http://172.20.10.3:8001/get-sessions")!
+        let url = URL(string: "https://psyche-api.vercel.app/get-sessions")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -264,7 +264,7 @@ struct PSYCHEExport: View {
             return
         }
 
-        let url = URL(string: "http://172.20.10.3:8001/export-sessions")!
+        let url = URL(string: "https://psyche-api.vercel.app/export-sessions")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
