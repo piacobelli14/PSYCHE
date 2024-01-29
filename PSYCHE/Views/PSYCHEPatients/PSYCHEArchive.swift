@@ -182,7 +182,7 @@ struct PSYCHEArchive: View {
         }
     }
     func archivePatientPlaceholders(patientID: String) {
-        guard let url = URL(string: "http://172.20.10.3:8001/selected-patient-placeholders") else { return }
+        guard let url = URL(string: "https://psyche-api.vercel.app/selected-patient-placeholders") else { return }
         
         let requestBody: [String: Any] = ["patientID": patientID]
         var request = URLRequest(url: url)
@@ -218,7 +218,7 @@ struct PSYCHEArchive: View {
             "patientID": ptIDArchive,
         ]
 
-        let url = URL(string: "http://172.20.10.3:8001/archive-patient")!
+        let url = URL(string: "https://psyche-api.vercel.app/archive-patient")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

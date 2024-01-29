@@ -267,7 +267,7 @@ struct PSYCHESwap: View {
             "ptID": selectedPatientID,
         ]
 
-        let url = URL(string: "http://172.20.10.3:8001/get-assignment-info")!
+        let url = URL(string: "https://psyche-api.vercel.app/get-assignment-info")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -307,7 +307,7 @@ struct PSYCHESwap: View {
         }
     }
     private func getDeviceInfo() {
-        let url = URL(string: "http://172.20.10.3:8001/get-devices")!
+        let url = URL(string: "https://psyche-api.vercel.app/get-devices")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -375,7 +375,7 @@ struct PSYCHESwap: View {
             "ptName": ptName,
         ]
 
-        let url = URL(string: "http://172.20.10.3:8001/swap-device")!
+        let url = URL(string: "https://psyche-api.vercel.app/swap-device")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
