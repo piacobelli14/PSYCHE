@@ -94,7 +94,7 @@ struct ImagePickerView: View {
         }
     }
     private func convertImageToBase64String(img: UIImage) -> String? {
-        guard let imageData = img.jpegData(compressionQuality: 1.0) else { return nil }
+        guard let imageData = img.jpegData(compressionQuality: 0.5) else { return nil }
         return imageData.base64EncodedString(options: .lineLength64Characters)
     }
 }
@@ -529,7 +529,7 @@ struct PSYCHERegister: View {
             "image": imageBase64,
         ]
 
-        let url = URL(string: "http://172.20.10.3:8001/register-user")!
+        let url = URL(string: "https://psyche-api.vercel.app/register-user")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -537,20 +537,26 @@ struct PSYCHERegister: View {
 
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
-                self.errorMessage = "Registration failed: \(error.localizedDescription)"
+                DispatchQueue.main.async {
+                    self.errorMessage = "Registration failed: \(error.localizedDescription)"
+                }
                 return
             }
 
-            guard data == data, let response = response as? HTTPURLResponse else {
-                self.errorMessage = "Registration failed: No response received."
-                return
+            if let httpResponse = response as? HTTPURLResponse {
+                print("HTTP Status Code: \(httpResponse.statusCode)")
+                if httpResponse.statusCode != 200 {
+                    // If possible, decode the server's response to get more detailed error information
+                    DispatchQueue.main.async {
+                        self.errorMessage = "Server returned status code: \(httpResponse.statusCode)"
+                    }
+                } else {
+                    self.currentView = .Login
+                }
             }
 
-            if response.statusCode == 200 {
-                self.currentView = .Login
-            } else {
-                self.errorMessage = "This username or email is already taken. Please choose a different username or email."
-            }
+           
+
         }.resume()
     }
 }

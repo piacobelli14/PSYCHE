@@ -30,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		BE707FB92B673737001609B1 /* Fitbit Sense Remodel.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = "Fitbit Sense Remodel.dae"; sourceTree = "<group>"; };
+		BE707FBB2B67F8F7001609B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BE86715F2B5C338300810613 /* PSYCHE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSYCHE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE8671622B5C338300810613 /* PSYCHEApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PSYCHEApp.swift; sourceTree = "<group>"; };
 		BE8671642B5C338300810613 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -103,6 +104,7 @@
 		BE8671612B5C338300810613 /* PSYCHE */ = {
 			isa = PBXGroup;
 			children = (
+				BE707FBB2B67F8F7001609B1 /* Info.plist */,
 				BE8671722B5C362500810613 /* Protocols */,
 				BE8671712B5C361A00810613 /* Views */,
 				BE8671702B5C35F300810613 /* Managers */,
@@ -387,6 +389,7 @@
 				DEVELOPMENT_TEAM = 5M8SG6QY62;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PSYCHE/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -419,6 +422,7 @@
 				DEVELOPMENT_TEAM = 5M8SG6QY62;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PSYCHE/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
