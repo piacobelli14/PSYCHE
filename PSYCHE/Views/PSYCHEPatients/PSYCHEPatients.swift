@@ -330,7 +330,7 @@ struct PSYCHEPatients: View {
             "patientTable": (isCurrent ? "current" : "archive"),
         ]
 
-        let url = URL(string: "http://172.20.10.3:8001/get-patients")!
+        let url = URL(string: "https://psyche-api.vercel.app/get-patients")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
