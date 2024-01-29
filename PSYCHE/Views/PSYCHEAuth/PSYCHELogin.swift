@@ -268,7 +268,7 @@ struct PSYCHELogin: View {
             "password": password
         ]
 
-        let url = URL(string: "http://172.20.10.3:8001/login")!
+        let url = URL(string: "https://psyche-api.vercel.app/login")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
