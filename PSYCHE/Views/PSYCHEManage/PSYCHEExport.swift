@@ -31,6 +31,9 @@ struct PSYCHEExport: View {
     
     @State private var errorMessage: String = ""
     
+    @State private var documentPickerPresented = false
+    @State private var downloadedFileURL: URL? = nil
+    
     var body: some View {
         
         ZStack {
@@ -240,7 +243,7 @@ struct PSYCHEExport: View {
                 let sessionResponse = try JSONDecoder().decode(SessionResponse.self, from: data)
                 DispatchQueue.main.async {
                     self.availableSessions = sessionResponse.sessions
-                    print(sessionResponse.sessions) // Now correctly prints the sessions
+                    print(sessionResponse.sessions)
                 }
             } catch {
                 DispatchQueue.main.async {
@@ -252,47 +255,52 @@ struct PSYCHEExport: View {
         .resume()
     }
     private func downloadSessionFile() {
-        guard !self.selectedSession.isEmpty else {
-            self.errorMessage = "No session selected."
+        guard let apiURL = URL(string: "https://psyche-api.vercel.app/export-sessions") else {
+            errorMessage = "Invalid API URL"
             return
         }
 
-        let url = URL(string: "https://psyche-api.vercel.app/export-sessions")!
-        var request = URLRequest(url: url)
+        var request = URLRequest(url: apiURL)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         let body: [String: Any] = ["fileName": self.selectedSession]
         request.httpBody = try? JSONSerialization.data(withJSONObject: body)
 
-        let task = URLSession.shared.downloadTask(with: request) { (tempURL, response, error) in
-            guard let tempURL = tempURL else {
+        let session = URLSession.shared
+        session.downloadTask(with: request) { (tempLocalUrl, response, error) in
+            guard let tempLocalUrl = tempLocalUrl, error == nil else {
                 DispatchQueue.main.async {
                     self.errorMessage = "Download failed: \(error?.localizedDescription ?? "Unknown error")"
                 }
                 return
             }
-
+            
             do {
                 let fileManager = FileManager.default
-                let documentsPath = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                let destinationURL = documentsPath.appendingPathComponent(self.selectedSession)
-
-                // Delete any existing file
-                if fileManager.fileExists(atPath: destinationURL.path) {
-                    try fileManager.removeItem(at: destinationURL)
-                }
-
-                try fileManager.moveItem(at: tempURL, to: destinationURL)
+                let temporaryDirURL = fileManager.temporaryDirectory.appendingPathComponent(self.selectedSession)
+                try? fileManager.removeItem(at: temporaryDirURL) 
+                try fileManager.moveItem(at: tempLocalUrl, to: temporaryDirURL)
 
                 DispatchQueue.main.async {
-                    self.currentView = .Devices
+                    self.downloadedFileURL = temporaryDirURL
+                    self.documentPickerPresented = true
                 }
             } catch {
                 DispatchQueue.main.async {
-                    self.errorMessage = "File save error: \(error.localizedDescription)"
+                    self.errorMessage = "File processing failed: \(error.localizedDescription)"
                 }
             }
-        }
-        task.resume()
+        }.resume()
     }
+}
+
+struct DocumentPicker: UIViewControllerRepresentable {
+    var url: URL
+    
+    func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
+        let picker = UIDocumentPickerViewController(forExporting: [url])
+        return picker
+    }
+    
+    func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {}
 }
