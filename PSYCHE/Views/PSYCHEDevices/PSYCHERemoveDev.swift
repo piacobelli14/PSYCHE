@@ -229,7 +229,7 @@ struct PSYCHERemoveDev: View {
         }
     }
     private func getDeviceInfo() {
-        let url = URL(string: "http://172.20.10.3:8001/get-devices")!
+        let url = URL(string: "https://psyche-api.vercel.app/get-devices")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -294,7 +294,7 @@ struct PSYCHERemoveDev: View {
             "devID": selectedDevID,
         ]
 
-        let url = URL(string: "http://172.20.10.38001/remove-device")!
+        let url = URL(string: "https://psyche-api.vercel.app/remove-device")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

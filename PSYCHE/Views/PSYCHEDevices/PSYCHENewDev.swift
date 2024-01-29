@@ -252,7 +252,7 @@ struct PSYCHENewDev: View {
             "devID": devID,
         ]
 
-        let url = URL(string: "http://172.20.10.3:8001/register-device")!
+        let url = URL(string: "https://psyche-api.vercel.app/register-device")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
