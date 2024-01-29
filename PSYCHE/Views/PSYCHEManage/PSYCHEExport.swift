@@ -12,7 +12,6 @@ import SwiftUI
 struct Session: Decodable, Hashable {
     let name: String
     let sizeBytes: Int
-    let creationTime: String
 }
 
 struct SessionResponse: Decodable {
@@ -27,7 +26,6 @@ struct PSYCHEExport: View {
     @State private var selectedSession: String = ""
     
     @State private var selectedFileSize: String = ""
-    @State private var selectedFileCreation: String = ""
     
     @State private var validationCheck = false
     
@@ -93,7 +91,6 @@ struct PSYCHEExport: View {
                                     Button(action: {
                                         self.selectedSession = session.name
                                         self.selectedFileSize = "\(String(format: "%.2f MB", Double(session.sizeBytes) / 1024.0 / 1024.0))"
-                                        self.selectedFileCreation = session.creationTime
                                     }) {
                                         Text(session.name)
                                             .foregroundColor(.black)
@@ -128,10 +125,6 @@ struct PSYCHEExport: View {
                                 .font(.system(size: geometry.size.height * 0.016, weight: .semibold))
                             
                             Spacer()
-                            
-                            Text(selectedFileSize != "" ? "Created: \(selectedFileCreation)" : "")
-                                .foregroundColor(Color.white)
-                                .font(.system(size: geometry.size.height * 0.016, weight: .semibold))
                         }
                         .frame(width: geometry.size.width * 0.6)
                         .padding(.top, geometry.size.height * 0.02)

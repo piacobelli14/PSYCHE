@@ -30,7 +30,7 @@ struct PSYCHENewDev: View {
                 GeometryReader { geometry in
                     HStack {
                         Button(action: {
-                            currentView = .Patients
+                            currentView = .Devices
                         }) {
                             Image(systemName: "arrow.left")
                                 .resizable()
