@@ -395,7 +395,7 @@ struct PSYCHEReset: View {
         }
     }
     private func initiatePasswordReset() {
-        guard let url = URL(string: "http://172.20.10.3:8001/reset-password") else {
+        guard let url = URL(string: "http://psyche-api.vercel.app/reset-password") else {
             return
         }
 
@@ -472,7 +472,7 @@ struct PSYCHEReset: View {
             "email": email
         ]
         
-        let url = URL(string: "http://172.20.10.3:8001/change-password")!
+        let url = URL(string: "http://psyche-api.vercel.app/change-password")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
