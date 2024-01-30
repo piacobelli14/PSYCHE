@@ -3,7 +3,7 @@
 
 This is an application built for the data collection and wearable device management, specifically designed for use in a psychiatric hospital. It is currently copatible with the Fitbit Sense, although future versions will aim to integrate various other watches including the Fitbit Versa and several variations of Actigraph. 
 
-Raw 3-axis accelerometer and gyroscope, heart rate, battery life, and body presence are collected with the Fitbit Sense in real time and sent to the Flask-Vercel backend [a link](https://github.com/piacobelli14/PSYCHE-API). In the app, this data can be exported by simply selecting the available session for an enrolled patient and exporting the raw data as a CSV. 
+Raw 3-axis accelerometer and gyroscope, heart rate, battery life, and body presence are collected with the Fitbit Sense in real time and sent to a [Flask-Vercel backend](https://github.com/piacobelli14/PSYCHE-API). In the app, this data can be exported by simply selecting the available session for an enrolled patient and exporting the raw data as a CSV. 
 
 **Ongoing Challenges:**
 - Device Battery Life:
