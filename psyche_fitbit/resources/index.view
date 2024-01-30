@@ -1,0 +1,8 @@
+<svg>
+  <svg id="background-container" class="background-fill"/>
+  
+  <image id='menningerLogo' href='menningerLogo.png' x="15%" y="3%" width="70%" height="90"/>
+  
+  <text id='dateLabel' x="50%" y="50%" fill="darkgrey" font-family="System-Bold" font-size="30" font-weight="bold" text-anchor="middle" text-length="150"> </text>
+  <text id='timeLabel' x="50%" y="68%" fill="white" font-family="System-Bold" font-size="70" font-weight="bold" text-anchor="middle" text-length="150"> </text>
+</svg>

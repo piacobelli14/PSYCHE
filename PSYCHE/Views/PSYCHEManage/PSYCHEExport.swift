@@ -278,7 +278,7 @@ struct PSYCHEExport: View {
             do {
                 let fileManager = FileManager.default
                 let temporaryDirURL = fileManager.temporaryDirectory.appendingPathComponent(self.selectedSession)
-                try? fileManager.removeItem(at: temporaryDirURL) 
+                try? fileManager.removeItem(at: temporaryDirURL)
                 try fileManager.moveItem(at: tempLocalUrl, to: temporaryDirURL)
 
                 DispatchQueue.main.async {
