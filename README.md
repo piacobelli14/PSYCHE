@@ -24,13 +24,13 @@ Raw 3-axis accelerometer and gyroscope, heart rate, battery life, and body prese
 
 
 
-![Image](PatientDashboard)
+![Image](WatchDashboard)
 
 
-![Image](PatientDashboard)
+![Image](Login)
 
 
-![Image](PatientDashboard)
+![Image](Manager)
 
 
-![Image](PatientDashboard)
+![Image](SwapDevice)
