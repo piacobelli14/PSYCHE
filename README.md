@@ -27,10 +27,10 @@ Raw 3-axis accelerometer and gyroscope, heart rate, battery life, and body prese
 ![Image](WatchDashboard)
 
 
-![Image](Login)
+![Image](WatchLogin)
 
 
-![Image](Manager)
+![Image](WatchManager)
 
 
 ![Image](SwapDevice)
