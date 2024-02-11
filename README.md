@@ -22,3 +22,15 @@ Raw 3-axis accelerometer and gyroscope, heart rate, battery life, and body prese
 3. Specify your 'deviceID' in the 'app/index.js' file.
 4. Run 'npm build' and 'npm install' to sideload the app onto your watch or the Fitbit simulator.
 
+
+
+![Image](PatientDashboard)
+
+
+![Image](PatientDashboard)
+
+
+![Image](PatientDashboard)
+
+
+![Image](PatientDashboard)
